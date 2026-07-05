@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김건 | Game Client Programmer</title>
+    <!-- Google Fonts: Outfit & Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Noto Sans KR', 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 font-sans leading-relaxed selection:bg-indigo-500 selection:text-white">
+
+    <!-- 네비게이션 바 -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center glass-panel rounded-b-2xl">
+            <h1 class="text-2xl font-bold text-white tracking-wide">
+                <span class="text-indigo-400">G</span>eon.
+            </h1>
+            <nav>
+                <ul class="flex space-x-8 text-sm font-medium text-slate-300 hidden md:flex">
+                    <li><a href="#about" class="hover:text-indigo-400 transition-colors">About</a></li>
+                    <li><a href="#skills" class="hover:text-indigo-400 transition-colors">Skills</a></li>
+                    <li><a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 mt-20">
+        
+        <!-- 소개 섹션 -->
+        <section id="about" class="min-h-[80vh] flex flex-col justify-center mb-20 pt-10 reveal">
+            <div class="inline-block mb-4">
+                <span class="bg-indigo-500/20 text-indigo-300 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest border border-indigo-500/30">GAME CLIENT PROGRAMMER</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                안녕하세요, <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">김건</span>입니다.
+            </h2>
+            <div class="text-lg text-slate-400 mb-10 max-w-3xl leading-relaxed space-y-4">
+                <p>
+                    객체 지향 프로그래밍과 메모리 효율화를 핵심 가치로 삼는 개발자입니다. <br>
+                    Behavior Tree 기반 AI와 Scriptable Object를 활용한 데이터 중심 설계를 통해 확장성 높은 시스템을 구축하고자 노력합니다.
+                </p>
+                <div class="flex flex-col space-y-3 text-sm mt-6 bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 w-fit">
+                    <span class="flex items-center text-slate-300"><svg class="w-5 h-5 mr-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> 010-7919-3687</span>
+                    <span class="flex items-center text-slate-300"><svg class="w-5 h-5 mr-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> rlarjs0720@naver.com</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 mt-4">
+                <a href="https://docs.google.com/document/d/1dCVpQIYkkI47YZY23ezAKFxfIgx9utmdFBN063jTV7E/edit?tab=t.0" target="_blank" class="group relative px-8 py-3 bg-cyan-600 text-white rounded-full overflow-hidden hover:bg-cyan-500 transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]">
+                    <span class="relative z-10 font-bold flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        상세 이력서
+                    </span>
+                </a>
+                <a href="https://docs.google.com/document/d/1fXRcvqIc9Iv9emB_g-8ULm9EVxp71F2boU72wr1U1V4/edit?tab=t.0#heading=h.bc9dopo6wqms" target="_blank" class="group relative px-8 py-3 bg-emerald-600 text-white rounded-full overflow-hidden hover:bg-emerald-500 transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]">
+                    <span class="relative z-10 font-bold flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        자기소개서
+                    </span>
+                </a>
+                <a href="mailto:rlarjs0720@naver.com" class="group relative px-8 py-3 bg-indigo-600 text-white rounded-full overflow-hidden hover:bg-indigo-500 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)]">
+                    <span class="relative z-10 font-medium">이메일 보내기</span>
+                </a>
+                <a href="https://github.com/kimgeon-3seven" target="_blank" class="px-8 py-3 bg-slate-800 text-slate-200 rounded-full border border-slate-700 hover:bg-slate-700 hover:border-slate-500 transition-all font-medium flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                    GitHub
+                </a>
+                <a href="https://blog.naver.com/rlarjs0720" target="_blank" class="px-8 py-3 bg-slate-800 text-slate-200 rounded-full border border-slate-700 hover:bg-slate-700 hover:border-emerald-500/50 transition-all font-medium flex items-center group">
+                    <span class="text-emerald-500 mr-2 group-hover:scale-110 transition-transform">📗</span> 기술 블로그
+                </a>
+            </div>
+        </section>
+
+        <!-- 스킬 섹션 -->
+        <section id="skills" class="mb-32 pt-20 reveal">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="w-8 h-1 bg-cyan-500 mr-4 rounded-full"></span>
+                Technical Skills
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-8 rounded-3xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm hover:border-cyan-500/30 transition-colors">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <span class="text-cyan-400 mr-3 text-2xl">⚙️</span> Engine & Language
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-slate-700/80 text-slate-200 px-5 py-2.5 rounded-xl font-medium shadow-sm">Unity</span>
+                        <span class="bg-slate-700/80 text-slate-200 px-5 py-2.5 rounded-xl font-medium shadow-sm">C#</span>
+                    </div>
+                </div>
+                <div class="p-8 rounded-3xl bg-slate-800/40 border border-slate-700/50 backdrop-blur-sm hover:border-purple-500/30 transition-colors">
+                    <h3 class="text-xl font-bold text-white mb-6 flex items-center">
+                        <span class="text-purple-400 mr-3 text-2xl">🧠</span> Domain
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-2 rounded-xl font-medium text-sm">Behavior Tree AI 설계</span>
+                        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-2 rounded-xl font-medium text-sm">Addressables 자원 관리</span>
+                        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-2 rounded-xl font-medium text-sm">Scriptable Object</span>
+                        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-2 rounded-xl font-medium text-sm">Observer Pattern</span>
+                        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-4 py-2 rounded-xl font-medium text-sm">DOTween 연출</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 프로젝트 섹션 -->
+        <section id="projects" class="mb-32 pt-20 reveal">
+            <h2 class="text-3xl font-bold text-white mb-12 flex items-center">
+                <span class="w-8 h-1 bg-indigo-500 mr-4 rounded-full"></span>
+                Projects
+            </h2>
+            
+            <!-- 프로젝트 1: Felheim -->
+            <div class="project-card relative p-8 md:p-12 rounded-[2rem] bg-slate-800/50 border border-slate-700/50 overflow-hidden backdrop-blur-sm transition-all duration-500 mb-16">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    
+                    <!-- 썸네일 스크린샷 영역 -->
+                    <div class="w-full aspect-video mb-10 rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl relative group bg-slate-900 flex items-center justify-center">
+                        <img src="./felheim_intro.png" alt="Felheim Intro Screen" class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="absolute inset-0 hidden flex-col items-center justify-center text-slate-500">
+                            <span class="text-4xl mb-3">🖼️</span>
+                            <p>폴더에 'felheim_intro.png' 이미지를 넣어주세요.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                        <div>
+                            <h3 class="text-4xl font-bold text-white mb-3">Felheim</h3>
+                            <p class="text-indigo-400 font-semibold text-lg">2인 팀 프로젝트 | 클라이언트 개발 전반 담당</p>
+                        </div>
+                        <span class="text-sm bg-emerald-500/10 text-emerald-400 px-5 py-2 rounded-full border border-emerald-500/20 font-medium whitespace-nowrap">완료 (2026.05.28 - 2026.06.24)</span>
+                    </div>
+
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed bg-slate-900/40 p-6 rounded-2xl border border-slate-700/30 font-medium">
+                        Behavior Tree 기반 AI와 Addressables를 통한 동적 스폰 시스템을 구축하여, 최적화와 확장성에 초점을 맞춘 프로젝트입니다.
+                    </p>
+
+                    <!-- 요약된 주요 기여 내용 -->
+                    <div class="space-y-4">
+                        <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-700/50">
+                            <h4 class="text-white font-bold mb-4 flex items-center text-lg"><span class="text-indigo-400 mr-3 text-xl">🎯</span> Key Contributions</h4>
+                            <ul class="space-y-3 text-slate-400 ml-2">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-3 mt-1">•</span> <span><strong class="text-slate-200">AI & 시스템 설계:</strong> Behavior Tree 기반 모듈화된 AI 설계 및 Addressables 활용 비동기 동적 자원 관리 구현</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-3 mt-1">•</span> <span><strong class="text-slate-200">구조 최적화:</strong> Scriptable Object 데이터 중심 설계 도입 및 Unity Profiler 추적을 통한 실시간 메모리 스파이크 결함 해결</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-3 mt-1">•</span> <span><strong class="text-slate-200">피드백 연출:</strong> DOTween을 활용한 오디오 더킹(Ducking) 및 공간 빌보드 UI 시스템 구현으로 직관적 피드백 제공</span></li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 flex flex-col md:flex-row items-center justify-between bg-slate-900/60 p-5 rounded-2xl border border-slate-700 border-dashed gap-4">
+                            <p class="text-slate-400 text-sm">※ 상세 트러블슈팅 과정 및 성과는 위 <strong>상세 이력서 보기</strong>에서 확인하실 수 있습니다.</p>
+                            <a href="#" class="w-full md:w-auto px-6 py-2.5 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-xl font-medium flex items-center justify-center cursor-not-allowed opacity-70" onclick="event.preventDefault();">
+                                <span class="mr-2 text-lg">🎬</span> 데모 영상 (추후 업로드 예정)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 프로젝트 2: IDLE CITY -->
+            <div class="project-card relative p-8 md:p-12 rounded-[2rem] bg-slate-800/50 border border-slate-700/50 overflow-hidden backdrop-blur-sm transition-all duration-500">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                        <div>
+                            <h3 class="text-4xl font-bold text-white mb-3">IDLE CITY</h3>
+                            <div class="flex flex-wrap items-center gap-3 mb-2">
+                                <span class="bg-slate-700/50 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-slate-600/50">방치형 시뮬레이션</span>
+                                <span class="bg-slate-700/50 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-slate-600/50">Unity, C#</span>
+                            </div>
+                            <p class="text-orange-400 font-semibold text-lg">5인 팀 프로젝트 | UI/UX 및 Data 담당</p>
+                        </div>
+                        <span class="text-sm bg-orange-500/10 text-orange-400 px-5 py-2 rounded-full border border-orange-500/20 font-medium whitespace-nowrap flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                            개발 진행 중 (2026.07.06 - 2026.08.19)
+                        </span>
+                    </div>
+
+                    <p class="text-slate-300 text-lg mb-8 leading-relaxed bg-slate-900/40 p-6 rounded-2xl border border-slate-700/30 font-medium">
+                        Unity를 활용하여 새롭게 시작한 방치형 시뮬레이션 게임입니다. 저는 <strong>UI/UX 프로그래밍과 Data 구조 설계</strong> 역할을 맡아, 플레이어의 직관적인 상호작용 경험을 구축하고 효율적인 데이터 관리 파이프라인을 설계할 예정입니다.
+                    </p>
+                    
+                    <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-700 border-dashed text-center flex flex-col items-center justify-center">
+                        <span class="text-4xl mb-4 animate-bounce">🚧</span>
+                        <h5 class="text-lg font-bold text-slate-200 mb-2">현재 활발히 개발이 진행 중인 프로젝트입니다!</h5>
+                        <p class="text-slate-500">추후 스크린샷과 상세 개발 내용이 업데이트될 예정입니다.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- 교육 및 타임라인 섹션 (요약) -->
+        <section id="education" class="mb-20 pt-10 reveal">
+            <h2 class="text-3xl font-bold text-white mb-8 flex items-center">
+                <span class="w-8 h-1 bg-purple-500 mr-4 rounded-full"></span>
+                Timeline
+            </h2>
+            <div class="bg-slate-800/40 p-8 rounded-[2rem] border border-slate-700/50 backdrop-blur-md">
+                <div class="flex flex-col md:flex-row gap-6 justify-between">
+                    <div class="flex-1 bg-slate-900/40 p-6 rounded-2xl border border-slate-700/50 flex items-center hover:border-slate-500 transition-colors">
+                        <span class="text-4xl mr-5">💻</span>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">오즈코딩스쿨 게임개발캠프 5기</h4>
+                            <p class="text-slate-400 text-sm">2026.02 ~ 2026.08 (수료 예정)</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-slate-900/40 p-6 rounded-2xl border border-slate-700/50 flex items-center hover:border-slate-500 transition-colors">
+                        <span class="text-4xl mr-5">🎓</span>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">고려대학교</h4>
+                            <p class="text-slate-400 text-sm">인문사회디지털융합 / 미디어문예창작 (수료)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-800 mt-20 py-12 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 Kim Geon. All rights reserved.</p>
+        <p class="mt-2 text-slate-600">Game Client Programmer Portfolio</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
