@@ -163,36 +163,71 @@
             </div>
 
             <!-- 프로젝트 2: IDLE CITY -->
-            <div class="project-card relative p-8 md:p-12 rounded-[2rem] bg-slate-800/50 border border-slate-700/50 overflow-hidden backdrop-blur-sm transition-all duration-500">
+            <article class="project-card relative p-8 md:p-12 rounded-[2rem] bg-slate-800/50 border border-slate-700/50 overflow-hidden backdrop-blur-sm transition-all duration-500" aria-labelledby="idle-city-title">
                 <div class="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
                 
                 <div class="relative z-10">
+                    <div class="video-frame mb-10 overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-950 shadow-2xl">
+                        <video class="block w-full aspect-video" controls playsinline preload="metadata" poster="assets/images/idle-city-build-preview.jpg" aria-label="IDLE CITY 1분 트레일러 영상">
+                            <source src="assets/videos/idle-city-trailer.mp4" type="video/mp4">
+                            브라우저에서 영상을 재생할 수 없습니다.
+                        </video>
+                        <div class="flex flex-col gap-2 border-t border-slate-800 bg-slate-950/90 px-5 py-4 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+                            <span>1분 트레일러 · 원본 음향 및 화면 자막 포함</span>
+                            <a href="#idle-city-full-video" class="font-semibold text-orange-300 transition-colors hover:text-orange-200">전체 기능 영상 보기 ↓</a>
+                        </div>
+                    </div>
+
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
                         <div>
-                            <h3 class="text-4xl font-bold text-white mb-3">IDLE CITY</h3>
+                            <h3 id="idle-city-title" class="text-4xl font-bold text-white mb-3">IDLE CITY</h3>
                             <div class="flex flex-wrap items-center gap-3 mb-2">
                                 <span class="bg-slate-700/50 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-slate-600/50">방치형 시뮬레이션</span>
                                 <span class="bg-slate-700/50 text-slate-300 px-3 py-1 rounded-md text-xs font-medium border border-slate-600/50">Unity, C#</span>
                             </div>
-                            <p class="text-orange-400 font-semibold text-lg">5인 팀 프로젝트 | UI/UX 및 Data 담당</p>
+                            <p class="text-orange-400 font-semibold text-lg">5인 팀 프로젝트 | UI/UX · 건설 제어 · HUD · 프리팹 폴리시</p>
                         </div>
-                        <span class="text-sm bg-orange-500/10 text-orange-400 px-5 py-2 rounded-full border border-orange-500/20 font-medium whitespace-nowrap flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                            개발 진행 중 (2026.07.06 - 2026.08.19)
+                        <span class="text-sm bg-emerald-500/10 text-emerald-400 px-5 py-2 rounded-full border border-emerald-500/20 font-medium whitespace-nowrap">
+                            완료 (2026.07 - 2026.08)
                         </span>
                     </div>
 
                     <p class="text-slate-300 text-lg mb-8 leading-relaxed bg-slate-900/40 p-6 rounded-2xl border border-slate-700/30 font-medium">
-                        Unity를 활용하여 새롭게 시작한 방치형 시뮬레이션 게임입니다. 저는 <strong>UI/UX 프로그래밍과 Data 구조 설계</strong> 역할을 맡아, 플레이어의 직관적인 상호작용 경험을 구축하고 효율적인 데이터 관리 파이프라인을 설계할 예정입니다.
+                        차량 이동 → 코인 획득 → 건물 해금 → 도시 확장으로 이어지는 방치형 도시 건설 시뮬레이션입니다. 저는 <strong class="text-white">건설 입력과 시각 피드백을 분리하고, 사용자가 클릭 전에 결과를 예측할 수 있는 UI/UX</strong>를 구현했습니다.
                     </p>
-                    
-                    <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-700 border-dashed text-center flex flex-col items-center justify-center">
-                        <span class="text-4xl mb-4 animate-bounce">🚧</span>
-                        <h5 class="text-lg font-bold text-slate-200 mb-2">현재 활발히 개발이 진행 중인 프로젝트입니다!</h5>
-                        <p class="text-slate-500">추후 스크린샷과 상세 개발 내용이 업데이트될 예정입니다.</p>
+
+                    <div class="grid gap-6 lg:grid-cols-2">
+                        <section class="rounded-2xl border border-slate-700/50 bg-slate-900/45 p-6" aria-labelledby="idle-city-contribution-title">
+                            <h4 id="idle-city-contribution-title" class="mb-4 text-lg font-bold text-white">직접 구현한 사용자 경험</h4>
+                            <ul class="space-y-3 text-slate-400">
+                                <li><strong class="text-slate-200">연속 건설:</strong> 이전·현재 입력 위치 사이 타일을 보간해 빠른 드래그에서도 도로가 끊기지 않도록 개선</li>
+                                <li><strong class="text-slate-200">입력 지연 제어:</strong> 현재 포인터와 멀어진 오래된 요청을 폐기해 배치 지연 누적 방지</li>
+                                <li><strong class="text-slate-200">예측 가능한 피드백:</strong> 초록·빨강 Ghost와 UI Raycast 검사로 배치 가능 여부와 입력 대상을 명확히 전달</li>
+                                <li><strong class="text-slate-200">상태 규칙 통일:</strong> 도로·일반 건물의 건설 모드 종료 조건과 정보창 닫기 입력을 일관되게 정리</li>
+                            </ul>
+                        </section>
+
+                        <section class="rounded-2xl border border-slate-700/50 bg-slate-900/45 p-6" aria-labelledby="idle-city-team-qa-title">
+                            <h4 id="idle-city-team-qa-title" class="mb-4 text-lg font-bold text-white">팀 QA에서 검증한 게임 규칙</h4>
+                            <p class="mb-4 text-slate-400">도로를 무작정 늘리면 교통 성과가 높아지던 문제를 발견하고, 게임의 핵심 재미와 지표가 어긋난 원인을 팀 단위로 검토했습니다.</p>
+                            <ul class="space-y-3 text-slate-400">
+                                <li><strong class="text-slate-200">원인:</strong> 차량의 실제 도착과 수익·성과 지표가 연결되지 않음</li>
+                                <li><strong class="text-slate-200">수정:</strong> 실제 도착을 수익 기준으로 통일하고 혼잡도를 타일별로 시각화</li>
+                                <li><strong class="text-slate-200">결과:</strong> 도로 도배가 아닌 교통 흐름 개선이 수익으로 이어지도록 게임 규칙 정리</li>
+                            </ul>
+                        </section>
                     </div>
+
+                    <details id="idle-city-full-video" class="mt-6 rounded-2xl border border-slate-700/70 bg-slate-950/60 p-5 open:border-orange-500/30">
+                        <summary class="cursor-pointer font-semibold text-orange-300">4분 30초 전체 기능 영상 열기</summary>
+                        <p class="mb-4 mt-3 text-sm text-slate-400">TTS 음성을 제거하고 기존 화면 자막은 유지한 포트폴리오용 편집본입니다.</p>
+                        <video class="block w-full rounded-xl border border-slate-800 bg-black" controls muted playsinline preload="metadata" poster="assets/images/idle-city-build-preview.jpg" aria-label="IDLE CITY 전체 무음 기능 소개 영상">
+                            <source src="assets/videos/idle-city-full-muted.mp4" type="video/mp4">
+                            브라우저에서 영상을 재생할 수 없습니다.
+                        </video>
+                    </details>
                 </div>
-            </div>
+            </article>
             
         </section>
 

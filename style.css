@@ -32,6 +32,38 @@ body {
     box-shadow: 0 10px 40px -10px rgba(99, 102, 241, 0.2);
 }
 
+.video-frame video,
+details video {
+    background: #020617;
+}
+
+video:focus-visible,
+details summary:focus-visible {
+    outline: 3px solid rgba(251, 146, 60, 0.85);
+    outline-offset: 4px;
+}
+
+#idle-city-full-video {
+    scroll-margin-top: 7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .project-card,
+    .project-card * {
+        transition: none !important;
+    }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
