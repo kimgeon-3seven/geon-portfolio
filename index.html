@@ -63,16 +63,16 @@
             </div>
             
             <div class="flex flex-wrap gap-4 mt-4">
-                <a href="https://docs.google.com/document/d/1dCVpQIYkkI47YZY23ezAKFxfIgx9utmdFBN063jTV7E/edit?tab=t.0" target="_blank" class="group relative px-8 py-3 bg-cyan-600 text-white rounded-full overflow-hidden hover:bg-cyan-500 transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]">
+                <a id="resume-link" href="https://docs.google.com/document/d/1dCVpQIYkkI47YZY23ezAKFxfIgx9utmdFBN063jTV7E/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="group relative px-8 py-3 bg-cyan-600 text-white rounded-full overflow-hidden hover:bg-cyan-500 transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]">
                     <span class="relative z-10 font-bold flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        직무별 이력서 모음
+                        <span id="resume-link-label">직무별 이력서 모음</span>
                     </span>
                 </a>
-                <a href="https://docs.google.com/document/d/1fXRcvqIc9Iv9emB_g-8ULm9EVxp71F2boU72wr1U1V4/edit?tab=t.0#heading=h.bc9dopo6wqms" target="_blank" class="group relative px-8 py-3 bg-emerald-600 text-white rounded-full overflow-hidden hover:bg-emerald-500 transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]">
+                <a id="intro-link" href="https://docs.google.com/document/d/1fXRcvqIc9Iv9emB_g-8ULm9EVxp71F2boU72wr1U1V4/edit?tab=t.0#heading=h.bc9dopo6wqms" target="_blank" rel="noopener noreferrer" class="group relative px-8 py-3 bg-emerald-600 text-white rounded-full overflow-hidden hover:bg-emerald-500 transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(16,185,129,0.6)]">
                     <span class="relative z-10 font-bold flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                        직무별 자기소개서 모음
+                        <span id="intro-link-label">직무별 자기소개서 모음</span>
                     </span>
                 </a>
                 <a href="#projects" class="group relative px-8 py-3 bg-indigo-600 text-white rounded-full overflow-hidden hover:bg-indigo-500 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)]">
@@ -203,6 +203,31 @@
                         </div>
                     </div>
 
+                    <section class="debug-log mb-8" aria-labelledby="felheim-debug-title">
+                        <div class="debug-log-heading">
+                            <p>IMPLEMENTATION DEBUGGING</p>
+                            <h4 id="felheim-debug-title">구현 오류를 재현하고 수정한 과정</h4>
+                        </div>
+                        <article class="debug-case">
+                            <h5>CASE 01 · Behavior Tree 공격 쿨타임</h5>
+                            <div class="debug-flow">
+                                <div><span>오류</span><p>Blackboard 값이 예상대로 동기화되지 않아 적의 공격 쿨타임이 무시됐습니다.</p></div>
+                                <div><span>원인 확인</span><p>공격 노드의 조건과 값 갱신 시점을 따라가며 컴포넌트가 사용할 Blackboard 참조 지점을 좁혔습니다.</p></div>
+                                <div><span>수정</span><p>외부 패키지 소스를 직접 변경하지 않고 BehaviorGraphAgent의 BlackboardReference를 컴포넌트 레벨에서 참조하도록 분리했습니다.</p></div>
+                                <div><span>재검증</span><p>동일한 전투 흐름을 반복해 설정한 공격 주기가 적용되는지 다시 확인했습니다.</p></div>
+                            </div>
+                        </article>
+                        <article class="debug-case">
+                            <h5>CASE 02 · Addressables 생성 상태</h5>
+                            <div class="debug-flow">
+                                <div><span>오류</span><p>로딩 중 오브젝트 비활성화와 코루틴 중단이 겹치며 몬스터 생성 상태가 꼬였습니다.</p></div>
+                                <div><span>원인 확인</span><p>Addressables 완료 시점과 Unity 오브젝트 생명주기가 충돌하는 재현 경로를 확인했습니다.</p></div>
+                                <div><span>수정</span><p>렌더러·충돌체 제어와 생성 완료 콜백을 분리하고 중복 생성 방지 조건을 추가했습니다.</p></div>
+                                <div><span>재검증</span><p>같은 던전 진입 경로에서 로딩 완료와 생성 상태가 끝까지 이어지는지 반복 확인했습니다.</p></div>
+                            </div>
+                        </article>
+                    </section>
+
                     <!-- 요약된 주요 기여 내용 -->
                     <div class="space-y-4">
                         <div class="bg-slate-800/30 p-6 rounded-2xl border border-slate-700/50">
@@ -293,6 +318,22 @@
                             <p>입력 위치 보간, 오래된 요청 폐기, 초록·빨강 Ghost와 UI Raycast 검사를 조합해 건설 결과를 예측할 수 있게 했습니다.</p>
                         </div>
                     </div>
+
+                    <section class="debug-log is-orange mb-8" aria-labelledby="idle-city-debug-title">
+                        <div class="debug-log-heading">
+                            <p>IMPLEMENTATION DEBUGGING</p>
+                            <h4 id="idle-city-debug-title">빠른 드래그에서 도로가 끊기는 오류</h4>
+                        </div>
+                        <article class="debug-case">
+                            <h5>CASE 01 · 연속 건설 입력</h5>
+                            <div class="debug-flow">
+                                <div><span>오류</span><p>드래그 속도가 빨라지면 입력 프레임 사이 타일이 누락되어 도로가 끊기고 오래된 요청이 남았습니다.</p></div>
+                                <div><span>원인 확인</span><p>이전 입력과 현재 입력의 그리드 좌표가 멀어질 때 중간 셀을 검사하지 않는 흐름을 확인했습니다.</p></div>
+                                <div><span>수정</span><p>두 좌표 사이의 셀을 보간해 경로를 채우고, 새 입력과 멀어진 오래된 건설 요청을 폐기했습니다.</p></div>
+                                <div><span>재검증</span><p>같은 드래그 경로를 다시 실행해 도로 연결을 확인하고 UI 위 입력은 Raycast 검사로 차단했습니다.</p></div>
+                            </div>
+                        </article>
+                    </section>
 
                     <div class="grid gap-6 lg:grid-cols-2">
                         <section class="rounded-2xl border border-slate-700/50 bg-slate-900/45 p-6" aria-labelledby="idle-city-contribution-title">

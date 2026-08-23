@@ -152,6 +152,87 @@ body {
     color: #fdba74;
 }
 
+.debug-log {
+    padding: 1.5rem;
+    border: 1px solid rgba(99, 102, 241, 0.32);
+    border-radius: 1.5rem;
+    background: rgba(15, 23, 42, 0.58);
+}
+
+.debug-log.is-orange {
+    border-color: rgba(251, 146, 60, 0.32);
+}
+
+.debug-log-heading {
+    margin-bottom: 1.25rem;
+}
+
+.debug-log-heading > p {
+    margin-bottom: 0.35rem;
+    color: #a5b4fc;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.debug-log.is-orange .debug-log-heading > p {
+    color: #fdba74;
+}
+
+.debug-log-heading h4 {
+    color: #f8fafc;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.debug-case + .debug-case {
+    margin-top: 1rem;
+}
+
+.debug-case {
+    padding: 1.25rem;
+    border: 1px solid rgba(100, 116, 139, 0.35);
+    border-radius: 1rem;
+    background: rgba(30, 41, 59, 0.4);
+}
+
+.debug-case h5 {
+    margin-bottom: 1rem;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.debug-flow {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.debug-flow div {
+    padding: 0.9rem;
+    border-radius: 0.75rem;
+    background: rgba(15, 23, 42, 0.62);
+}
+
+.debug-flow span {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #67e8f9;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.debug-log.is-orange .debug-flow span {
+    color: #fdba74;
+}
+
+.debug-flow p {
+    color: #94a3b8;
+    font-size: 0.82rem;
+    line-height: 1.65;
+}
+
 .qa-lab-shell {
     padding: 2rem;
     border: 1px solid rgba(52, 211, 153, 0.25);
@@ -265,6 +346,14 @@ details summary:focus-visible {
 
     .decision-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .debug-log {
+        padding: 2rem;
+    }
+
+    .debug-flow {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
 
