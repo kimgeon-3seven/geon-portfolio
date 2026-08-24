@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-active-role="client">
+<body>
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
 
     <header class="site-header" id="navbar">
@@ -33,15 +33,13 @@
     <main id="main-content">
         <section id="about" class="intro section-shell">
             <div class="intro-main">
-                <p class="eyebrow" id="role-kicker">GAME CLIENT PORTFOLIO</p>
+                <p class="eyebrow">GAME CLIENT PORTFOLIO</p>
                 <h1>김건<br>게임 클라이언트 개발 포트폴리오</h1>
-                <p class="intro-summary" id="role-summary">2인·4주 Felheim과 5인·6주 IDLE CITY에서 담당한 기능을 기준으로, 오류·원인 확인·수정·재검증 기록과 현재 확인 가능한 영상을 정리했습니다.</p>
+                <p class="intro-summary">맡은 프로젝트에서 담당한 기능을 기준으로, 오류·원인 확인·수정·재검증 기록과 현재 확인 가능한 영상을 정리했습니다.</p>
                 <div class="intro-links" aria-label="외부 링크">
                     <a class="button button-primary" href="#evidence-index">오류 수정 기록 보기</a>
                     <a class="button" href="https://github.com/kimgeon-3seven" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
                     <a class="button" href="https://blog.naver.com/rlarjs0720" target="_blank" rel="noopener noreferrer">기술 블로그 ↗</a>
-                    <a id="resume-link" hidden href="https://docs.google.com/document/d/1dCVpQIYkkI47YZY23ezAKFxfIgx9utmdFBN063jTV7E/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="button"><span id="resume-link-label">직무별 이력서 모음</span> ↗</a>
-                    <a id="intro-link" hidden href="https://docs.google.com/document/d/1fXRcvqIc9Iv9emB_g-8ULm9EVxp71F2boU72wr1U1V4/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="button"><span id="intro-link-label">직무별 자기소개서 모음</span> ↗</a>
                 </div>
             </div>
 
@@ -54,15 +52,6 @@
                 </dl>
             </aside>
 
-            <div class="role-control" aria-labelledby="role-selector-title">
-                <span id="role-selector-title">문서 보기</span>
-                <div class="role-switcher" role="tablist" aria-label="포트폴리오 직무 선택">
-                    <button type="button" class="role-tab" role="tab" aria-selected="false" tabindex="-1" data-role="qa">QA</button>
-                    <button type="button" class="role-tab is-active" role="tab" aria-selected="true" data-role="client">클라이언트 개발</button>
-                    <button type="button" class="role-tab" role="tab" aria-selected="false" tabindex="-1" data-role="planning">게임 기획</button>
-                </div>
-                <p id="role-focus" aria-live="polite">Felheim과 IDLE CITY의 오류 · 원인 확인 · 수정 · 재검증 과정</p>
-            </div>
         </section>
 
         <section id="evidence-index" class="section-shell evidence-index" aria-labelledby="evidence-index-title">
@@ -89,9 +78,7 @@
                 <li><span>03</span><div><strong>결과와 한계 분리</strong><p>Profiler나 Benchmark가 없다면 성능 향상을 단정하지 않고 구현 변경과 추가 검증 항목을 나눠 기록합니다.</p></div></li>
             </ol>
             <div class="role-note">
-                <div class="role-view" data-role-view="qa"><span>QA 관점</span><strong>재현 조건과 수정 후 확인 기록</strong><p>기대 결과와 실제 결과, 재현 절차, 수정 내용, 동일 조건의 재검증을 한 흐름으로 배치했습니다.</p></div>
-                <div class="role-view" data-role-view="client" hidden><span>클라이언트 개발 관점</span><strong>구현 구조와 측정 여부의 분리</strong><p>Unity·C# 구현 범위와 선택 이유는 기록하고, Baseline이 없는 성능 효과는 측정 전 항목으로 표시했습니다.</p></div>
-                <div class="role-view" data-role-view="planning" hidden><span>게임 기획 관점</span><strong>규칙과 플레이 결과의 비교</strong><p>사용자 입력, UI 피드백, 보상 구조, 팀 QA에서 확인한 문제를 프로젝트별 플레이 흐름에 연결했습니다.</p></div>
+                <div class="role-view"><span>클라이언트 개발 관점</span><strong>구현 구조와 측정 여부의 분리</strong><p>Unity·C# 구현 범위와 선택 이유는 기록하고, Baseline이 없는 성능 효과는 측정 전 항목으로 표시했습니다.</p></div>
             </div>
             <p class="skill-line"><strong>확인된 기술 범위</strong><span>Unity / C# / Behavior Tree / Addressables / Scriptable Object / Observer Pattern / DOTween</span></p>
         </section>
@@ -358,3 +345,4 @@ while (cursor.x != to.x)
     <script src="script.js"></script>
 </body>
 </html>
+
