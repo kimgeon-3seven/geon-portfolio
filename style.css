@@ -275,51 +275,6 @@ ul {
     text-underline-offset: 3px;
 }
 
-.role-control {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 90px auto 1fr;
-    align-items: center;
-    gap: 22px;
-    margin-top: 12px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
-}
-
-.role-control > span {
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.role-switcher {
-    display: flex;
-    gap: 18px;
-}
-
-.role-tab {
-    padding: 2px 0 4px;
-    border: 0;
-    border-bottom: 1px solid transparent;
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.role-tab:hover,
-.role-tab.is-active {
-    border-color: var(--ink);
-    color: var(--ink);
-    font-weight: 600;
-}
-
-.role-control > p {
-    justify-self: end;
-    color: var(--muted);
-    font-size: 12px;
-}
-
 .evidence-index,
 .method,
 .background {
@@ -442,10 +397,6 @@ ul {
     grid-template-columns: 160px minmax(200px, 280px) 1fr;
     gap: 22px;
     align-items: start;
-}
-
-.role-view[hidden] {
-    display: none;
 }
 
 .role-view span {
@@ -1044,15 +995,6 @@ ul {
         margin-top: 0;
     }
 
-    .role-control {
-        grid-template-columns: 80px 1fr;
-    }
-
-    .role-control > p {
-        grid-column: 2;
-        justify-self: start;
-    }
-
     .section-intro,
     .method-list,
     .role-note,
@@ -1119,20 +1061,6 @@ ul {
 
     .intro-links .button {
         flex: 1 1 calc(50% - 8px);
-    }
-
-    .role-control {
-        display: block;
-    }
-
-    .role-switcher {
-        margin-top: 10px;
-        gap: 15px;
-    }
-
-    .role-control > p {
-        margin-top: 12px;
-        line-height: 1.6;
     }
 
     .evidence-index,
@@ -1351,3 +1279,4 @@ ul {
         transition-duration: 0.01ms !important;
     }
 }
+
