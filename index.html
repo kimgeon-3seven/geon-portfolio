@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Unity·C# 프로젝트에서 담당한 기능과 오류 재현·원인 확인·수정·재검증 과정을 정리한 김건의 게임 클라이언트 개발 포트폴리오입니다.">
+    <meta name="description" content="프레임 입력, 런타임 상태, 비동기 생명주기처럼 게임의 상태가 어긋나는 지점을 추적하고 검증한 김건의 Unity 클라이언트 개발 포트폴리오입니다.">
     <meta name="theme-color" content="#f3f1eb">
     <title>김건 | 게임 클라이언트 개발 포트폴리오</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +22,9 @@
             </a>
             <nav class="main-nav" aria-label="주요 메뉴">
                 <a href="#about" data-section-link="about">소개</a>
-                <a href="#felheim" data-section-link="felheim">Felheim</a>
-                <a href="#idle-city" data-section-link="idle-city">IDLE CITY</a>
+                <a href="#evidence-index" data-section-link="evidence-index">상태 사례</a>
+                <a href="#state-lab" data-section-link="state-lab">State Lab</a>
+                <a href="#ai-workflow" data-section-link="ai-workflow">AI Workflow</a>
                 <a href="#education" data-section-link="education">이력</a>
             </nav>
             <a class="text-link header-mail" href="mailto:rlarjs0720@naver.com">Email</a>
@@ -33,21 +34,22 @@
     <main id="main-content">
         <section id="about" class="intro section-shell">
             <div class="intro-main">
-                <p class="eyebrow">GAME CLIENT PORTFOLIO</p>
-                <h1>김건<br>게임 클라이언트 개발 포트폴리오</h1>
-                <p class="intro-summary">맡은 프로젝트에서 담당한 기능을 기준으로, 오류·원인 확인·수정·재검증 기록과 현재 확인 가능한 영상을 정리했습니다.</p>
+                <p class="eyebrow">STATE-DRIVEN GAME CLIENT PORTFOLIO</p>
+                <h1>상태가 어긋나는<br><em>순간을 추적합니다.</em></h1>
+                <p class="intro-summary">프레임 사이의 입력, 런타임 참조, 비동기 생명주기처럼 눈에 보이는 증상 뒤의 상태 흐름을 따라가며 원인·수정 범위·검증 결과를 기록했습니다.</p>
                 <div class="intro-links" aria-label="외부 링크">
-                    <a class="button button-primary" href="#evidence-index">오류 수정 기록 보기</a>
+                    <a class="button button-primary" href="#evidence-index">대표 상태 오류 3건 보기</a>
+                    <a class="button" href="#ai-workflow">AI 활용·검증 방식</a>
                     <a class="button" href="https://github.com/kimgeon-3seven" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-                    <a class="button" href="https://blog.naver.com/rlarjs0720" target="_blank" rel="noopener noreferrer">기술 블로그 ↗</a>
                 </div>
             </div>
 
             <aside class="intro-facts" aria-label="지원자 정보">
                 <dl>
                     <div><dt>지원 직무</dt><dd>게임 클라이언트 개발</dd></div>
-                    <div><dt>주요 기술</dt><dd>Unity, C#</dd></div>
-                    <div><dt>프로젝트</dt><dd>Felheim, IDLE CITY</dd></div>
+                    <div><dt>문제 관점</dt><dd>상태 흐름 · 실행 순서 · 생명주기</dd></div>
+                    <div><dt>개발 환경</dt><dd>Unity · C# · Git · AI-assisted</dd></div>
+                    <div><dt>확인 자료</dt><dd>코드 비교 · PR · 회귀 테스트 · 영상</dd></div>
                     <div><dt>연락처</dt><dd><a href="mailto:rlarjs0720@naver.com">rlarjs0720@naver.com</a><br>010-7919-3687</dd></div>
                 </dl>
             </aside>
@@ -57,28 +59,29 @@
         <section id="evidence-index" class="section-shell evidence-index" aria-labelledby="evidence-index-title">
             <header class="section-title">
                 <p class="section-number">01</p>
-                <div><p class="eyebrow">CASE INDEX</p><h2 id="evidence-index-title">오류 수정 기록</h2></div>
+                <div><p class="eyebrow">STATE FAILURE INDEX</p><h2 id="evidence-index-title">상태가 어긋난 세 순간</h2></div>
             </header>
+            <p class="section-intro">프로젝트 이름보다 오류가 발생한 경계를 기준으로 사례를 다시 묶었습니다. 각 사례는 증상, 상태 흐름, 변경 지점, 재검증 자료 순서로 확인할 수 있습니다.</p>
             <div class="case-index-list">
-                <a href="#felheim-case-cooldown"><span class="case-no">01</span><span class="case-project">Felheim</span><strong>공격 쿨타임 미적용</strong><span class="case-tech">Behavior Tree</span><span aria-hidden="true">↘</span></a>
-                <a href="#felheim-case-addressables"><span class="case-no">02</span><span class="case-project">Felheim</span><strong>비동기 생성 상태 충돌</strong><span class="case-tech">Addressables</span><span aria-hidden="true">↘</span></a>
-                <a href="#idle-case-drag"><span class="case-no">03</span><span class="case-project">IDLE CITY</span><strong>빠른 드래그의 타일 누락</strong><span class="case-tech">Grid Input</span><span aria-hidden="true">↘</span></a>
+                <a href="#felheim-case-cooldown"><span class="case-no">01</span><span class="case-project">런타임 참조</span><strong>상태의 기준점이 달랐습니다</strong><span class="case-tech">Behavior Tree</span><span aria-hidden="true">↘</span></a>
+                <a href="#felheim-case-addressables"><span class="case-no">02</span><span class="case-project">비동기 경계</span><strong>생명주기가 실행을 끊었습니다</strong><span class="case-tech">Addressables</span><span aria-hidden="true">↘</span></a>
+                <a href="#idle-case-drag"><span class="case-no">03</span><span class="case-project">프레임 경계</span><strong>입력 사이의 상태가 사라졌습니다</strong><span class="case-tech">Grid Input</span><span aria-hidden="true">↘</span></a>
             </div>
         </section>
 
         <section id="evidence" class="section-shell method" aria-labelledby="method-title">
             <header class="section-title">
                 <p class="section-number">02</p>
-                <div><p class="eyebrow">WORKING RULE</p><h2 id="method-title">성능 표현과 검증 기준</h2></div>
+                <div><p class="eyebrow">VERIFICATION RULE</p><h2 id="method-title">결과보다 먼저 확인하는 것</h2></div>
             </header>
-            <p class="section-intro">기술 이름보다 확인한 사실과 아직 측정하지 않은 항목을 구분합니다. 성능 효과는 같은 조건의 Baseline과 변경 후 측정값이 있을 때만 결과로 기록합니다.</p>
+            <p class="section-intro">AI가 제안한 코드든 직접 작성한 코드든 바로 결과로 주장하지 않습니다. 증상을 다시 만들고, 상태가 바뀌는 지점을 찾고, 변경 범위를 제한한 뒤 같은 조건에서 확인합니다.</p>
             <ol class="method-list">
-                <li><span>01</span><div><strong>Baseline 기록</strong><p>기기·빌드·해상도·카메라·오브젝트 수·실행 경로를 고정하고 Warm-up 이후 구간을 비교 기준으로 남깁니다.</p></div></li>
-                <li><span>02</span><div><strong>변수 하나만 변경</strong><p>재현 → 측정 → 가설 → 단일 변경 → 재측정 순서로 원인을 좁힙니다.</p></div></li>
-                <li><span>03</span><div><strong>결과와 한계 분리</strong><p>Profiler나 Benchmark가 없다면 성능 향상을 단정하지 않고 구현 변경과 추가 검증 항목을 나눠 기록합니다.</p></div></li>
+                <li><span>01</span><div><strong>재현 조건 고정</strong><p>입력, 실행 경로, 빌드와 상태값을 기록해 같은 증상을 다시 만들 수 있는지 확인합니다.</p></div></li>
+                <li><span>02</span><div><strong>상태의 기준점 확인</strong><p>누가 값을 만들고, 어느 객체가 참조하며, 프레임과 생명주기 경계에서 무엇이 끊기는지 추적합니다.</p></div></li>
+                <li><span>03</span><div><strong>검증 결과와 한계 분리</strong><p>테스트·영상·Git 기록으로 확인한 결과와 아직 측정하지 않은 성능 효과를 분리합니다.</p></div></li>
             </ol>
             <div class="role-note">
-                <div class="role-view"><span>클라이언트 개발 관점</span><strong>구현 구조와 측정 여부의 분리</strong><p>Unity·C# 구현 범위와 선택 이유는 기록하고, Baseline이 없는 성능 효과는 측정 전 항목으로 표시했습니다.</p></div>
+                <div class="role-view"><span>포트폴리오 공개 기준</span><strong>현재 근거를 다시 확인한 범위만 사례로 사용</strong><p>코드 비교, 변경 기록, 실행 영상 또는 회귀 테스트로 확인할 수 없는 내용은 대표 성과에서 제외했습니다.</p></div>
             </div>
             <p class="skill-line"><strong>확인된 기술 범위</strong><span>Unity / C# / Behavior Tree / Addressables / Scriptable Object / Observer Pattern / DOTween</span></p>
         </section>
@@ -116,6 +119,15 @@
                         <header><p class="eyebrow">IMPLEMENTATION DEBUGGING</p><h4 id="felheim-debug-title">구현 오류를 재현하고 수정한 과정</h4></header>
                         <article id="felheim-case-cooldown" class="debug-case">
                             <div class="debug-case-title"><span>CASE 01</span><h5>Behavior Tree 공격 쿨타임</h5></div>
+                            <div class="case-state-map" aria-label="공격 쿨타임 상태 흐름">
+                                <div data-stage="event"><span>EVENT</span><strong>공격 조건 평가</strong><small>Condition Node</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="break"><span>STATE BREAK</span><strong>직렬화 값 참조</strong><small>런타임 값과 불일치</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="fix"><span>FIX</span><strong>Agent Blackboard 조회</strong><small>상태 기준점 통일</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="verify"><span>VERIFY</span><strong>공격 주기 재확인</strong><small>동일 전투 반복</small></div>
+                            </div>
                             <ol class="debug-steps">
                                 <li><span>오류</span><p>Blackboard 값이 예상대로 동기화되지 않아 적의 공격 쿨타임이 무시됐습니다.</p></li>
                                 <li><span>원인 확인</span><p>공격 노드의 조건과 값 갱신 시점을 따라가며 컴포넌트가 사용할 Blackboard 참조 지점을 좁혔습니다.</p></li>
@@ -160,6 +172,15 @@ return Time.time - lastTime &gt;= coolTime;</code></pre>
                         </article>
                         <article id="felheim-case-addressables" class="debug-case">
                             <div class="debug-case-title"><span>CASE 02</span><h5>Addressables 생성 상태</h5></div>
+                            <div class="case-state-map" aria-label="Addressables 생성 상태 흐름">
+                                <div data-stage="event"><span>EVENT</span><strong>문 상호작용</strong><small>Spawn 요청 시작</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="break"><span>LIFECYCLE BREAK</span><strong>오브젝트 비활성화</strong><small>코루틴 중단</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="fix"><span>FIX</span><strong>표시·실행 분리</strong><small>Renderer·Collider 제어</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="verify"><span>VERIFY</span><strong>생성 완료 확인</strong><small>중복 실행 방지</small></div>
+                            </div>
                             <ol class="debug-steps">
                                 <li><span>오류</span><p>로딩 중 오브젝트 비활성화와 코루틴 중단이 겹치며 몬스터 생성 상태가 꼬였습니다.</p></li>
                                 <li><span>원인 확인</span><p>Addressables 완료 시점과 Unity 오브젝트 생명주기가 충돌하는 재현 경로를 확인했습니다.</p></li>
@@ -210,7 +231,7 @@ gameObject.SetActive(false);</code></pre>
                     </section>
                     <div class="project-detail-grid">
                         <section aria-labelledby="felheim-contribution-title">
-                            <h4 id="felheim-contribution-title">직접 담당한 기능</h4>
+                            <h4 id="felheim-contribution-title">담당 기능과 확인 범위</h4>
                             <ul class="plain-list">
                                 <li><strong>데이터 구조</strong><span>Scriptable Object 카탈로그로 아이템·버프 데이터를 분리하고 Observer Pattern으로 PlayerStatus와 연동</span></li>
                                 <li><strong>적 행동</strong><span>추적·도망·공격·순찰 노드와 조건 분기를 사용하는 Behavior Tree 구성</span></li>
@@ -257,6 +278,15 @@ gameObject.SetActive(false);</code></pre>
                         <header><p class="eyebrow">IMPLEMENTATION DEBUGGING</p><h4 id="idle-city-debug-title">빠른 드래그에서 도로가 끊기는 오류</h4></header>
                         <article id="idle-case-drag" class="debug-case">
                             <div class="debug-case-title"><span>CASE 03</span><h5>연속 건설 입력</h5></div>
+                            <div class="case-state-map" aria-label="연속 건설 입력 상태 흐름">
+                                <div data-stage="event"><span>INPUT</span><strong>빠른 포인터 이동</strong><small>프레임 간 좌표 변화</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="break"><span>FRAME BREAK</span><strong>중간 셀 누락</strong><small>현재 좌표만 처리</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="fix"><span>FIX</span><strong>경로 보간·큐 등록</strong><small>중복 요청 방지</small></div>
+                                <i aria-hidden="true">→</i>
+                                <div data-stage="verify"><span>VERIFY</span><strong>순서 회귀 테스트</strong><small>(0, 0) → (0, 3)</small></div>
+                            </div>
                             <ol class="debug-steps">
                                 <li><span>오류</span><p>드래그 속도가 빨라지면 입력 프레임 사이 타일이 누락되어 도로가 끊기고 오래된 요청이 남았습니다.</p></li>
                                 <li><span>원인 확인</span><p>이전 입력과 현재 입력의 그리드 좌표가 멀어질 때 중간 셀을 검사하지 않는 흐름을 확인했습니다.</p></li>
@@ -312,7 +342,7 @@ while (cursor.x != to.x)
                         </article>
                     </section>
                     <div class="project-detail-grid">
-                        <section aria-labelledby="idle-city-contribution-title"><h4 id="idle-city-contribution-title">직접 구현한 기능</h4><ul class="plain-list"><li><strong>연속 건설</strong><span>이전·현재 입력 위치 사이 타일을 보간해 빠른 드래그에서 누락된 중간 셀을 연결</span></li><li><strong>입력 지연 제어</strong><span>현재 포인터와 멀어진 오래된 요청을 폐기해 배치 지연 누적 방지</span></li><li><strong>상태 피드백</strong><span>초록·빨강 Ghost로 배치 가능 여부를 클릭 전에 표시하고 UI 위 입력은 Raycast 검사로 차단</span></li><li><strong>규칙 통일</strong><span>도로·일반 건물의 건설 모드 종료 조건과 정보창 닫기 입력을 일관되게 정리</span></li></ul></section>
+                        <section aria-labelledby="idle-city-contribution-title"><h4 id="idle-city-contribution-title">담당 기능과 확인 범위</h4><ul class="plain-list"><li><strong>연속 건설</strong><span>이전·현재 입력 위치 사이 타일을 보간해 빠른 드래그에서 누락된 중간 셀을 연결</span></li><li><strong>입력 지연 제어</strong><span>현재 포인터와 멀어진 오래된 요청을 폐기해 배치 지연 누적 방지</span></li><li><strong>상태 피드백</strong><span>초록·빨강 Ghost로 배치 가능 여부를 클릭 전에 표시하고 UI 위 입력은 Raycast 검사로 차단</span></li><li><strong>규칙 통일</strong><span>도로·일반 건물의 건설 모드 종료 조건과 정보창 닫기 입력을 일관되게 정리</span></li></ul></section>
                         <section aria-labelledby="idle-city-team-qa-title"><h4 id="idle-city-team-qa-title">팀 QA에서 확인한 규칙</h4><ul class="plain-list"><li><strong>확인</strong><span>차량 도착 여부와 관계없이 도로 수가 늘면 교통 성과가 높아짐</span></li><li><strong>원인</strong><span>차량의 실제 도착과 수익·성과 지표가 연결되지 않음</span></li><li><strong>수정</strong><span>실제 도착을 수익 기준으로 통일하고 혼잡도를 타일별로 시각화</span></li></ul></section>
                     </div>
                     <div class="project-actions"><a class="button button-primary" href="https://github.com/hjh8874/GreenLight" target="_blank" rel="noopener noreferrer">GitHub 저장소 ↗</a><a class="button" href="#idle-city-full-video">전체 기능 영상 보기</a></div>
@@ -324,9 +354,95 @@ while (cursor.x != to.x)
             </article>
         </section>
 
-        <section id="education" class="section-shell background" aria-labelledby="background-title">
+        <section id="state-lab" class="section-shell state-lab" aria-labelledby="state-lab-title">
             <header class="section-title">
                 <p class="section-number">04</p>
+                <div><p class="eyebrow">CLIENT STATE LAB</p><h2 id="state-lab-title">두 프로젝트에서 확인한 세 오류 패턴</h2></div>
+            </header>
+            <p class="section-intro">장르와 기능은 달랐지만 문제는 같은 질문으로 모였습니다. 상태의 주인은 누구인지, 실행은 어디서 끊기는지, 프레임 사이에 무엇이 사라지는지를 확인했습니다.</p>
+            <div class="state-pattern-grid">
+                <article>
+                    <span class="pattern-index">PATTERN 01</span>
+                    <h3>Source of Truth</h3>
+                    <p>설정값과 런타임 값이 함께 존재할 때 실제 행동을 결정하는 기준점을 하나로 좁힙니다.</p>
+                    <a href="#felheim-case-cooldown">Blackboard 사례 보기 ↗</a>
+                </article>
+                <article>
+                    <span class="pattern-index">PATTERN 02</span>
+                    <h3>Lifecycle Boundary</h3>
+                    <p>비동기 작업을 시작한 객체의 활성 상태와 완료 시점을 분리해 실행 흐름이 끊기지 않게 합니다.</p>
+                    <a href="#felheim-case-addressables">Addressables 사례 보기 ↗</a>
+                </article>
+                <article>
+                    <span class="pattern-index">PATTERN 03</span>
+                    <h3>Frame Continuity</h3>
+                    <p>프레임마다 관찰된 지점만 처리하지 않고, 이전 상태와 현재 상태 사이의 누락 구간을 복원합니다.</p>
+                    <a href="#idle-case-drag">드래그 입력 사례 보기 ↗</a>
+                </article>
+            </div>
+            <div class="mmorpg-bridge">
+                <div>
+                    <p class="eyebrow">MMORPG CLIENT CONNECTION</p>
+                    <h3>기존 경험을 온라인 게임의 상태 문제로 확장합니다.</h3>
+                </div>
+                <ul>
+                    <li><span>01</span>서버와 클라이언트의 상태 기준점</li>
+                    <li><span>02</span>패킷·이벤트의 중복과 실행 순서</li>
+                    <li><span>03</span>UI 표시와 실제 게임 상태의 일치</li>
+                    <li><span>04</span>씬 전환·비동기 로딩 중 상태 보존</li>
+                </ul>
+                <p class="scope-note">네트워크 구현 경험을 성과로 주장하는 항목이 아닙니다. 현재 확인한 클라이언트 상태 관리 경험을 바탕으로 확장해 학습하는 영역입니다.</p>
+            </div>
+        </section>
+
+        <section id="ai-workflow" class="ai-workflow" aria-labelledby="ai-workflow-title">
+            <div class="section-shell">
+                <header class="section-title">
+                    <p class="section-number">05</p>
+                    <div><p class="eyebrow">AI-ASSISTED ENGINEERING WORKFLOW</p><h2 id="ai-workflow-title">AI의 속도에 검토 절차를 연결합니다.</h2></div>
+                </header>
+                <p class="section-intro">구현 과정에서 AI 개발 도구를 적극 활용했습니다. 현재는 결과를 바로 반영하지 않고 계획, 변경 범위, 실행 결과와 Git 기록을 확인하는 절차 안에서 사용하고 있습니다.</p>
+                <ol class="workflow-rail" aria-label="AI 보조 개발 절차">
+                    <li><span>01</span><strong>문제 정의</strong><p>증상과 기대 결과를 구분합니다.</p></li>
+                    <li><span>02</span><strong>계획·승인</strong><p>변경 대상과 위험 범위를 먼저 확인합니다.</p></li>
+                    <li><span>03</span><strong>AI 보조 구현</strong><p>코드 탐색, 대안, 초안과 반복 작업을 맡깁니다.</p></li>
+                    <li><span>04</span><strong>검토·테스트</strong><p>diff, 실행 흐름과 제한 사항을 다시 확인합니다.</p></li>
+                    <li><span>05</span><strong>Git 기록</strong><p>변경 이유와 검증 결과를 추적 가능하게 남깁니다.</p></li>
+                </ol>
+                <div class="responsibility-grid">
+                    <section>
+                        <p class="eyebrow">MY RESPONSIBILITY</p>
+                        <h3>최종 판단을 위해 확인하는 것</h3>
+                        <ul>
+                            <li>문제와 기대 동작 정의</li>
+                            <li>객체 책임과 변경 범위 검토</li>
+                            <li>적용할 대안과 수정 지점 선택</li>
+                            <li>변경 diff와 실행 결과 확인</li>
+                            <li>최종 반영·병합 판단</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p class="eyebrow">AI ASSISTANCE</p>
+                        <h3>속도를 높이는 데 활용한 범위</h3>
+                        <ul>
+                            <li>관련 코드와 참조 경로 탐색</li>
+                            <li>구조별 대안과 코드 초안 제시</li>
+                            <li>테스트 시나리오 초안 작성</li>
+                            <li>브랜치·커밋 등 반복 Git 작업 보조</li>
+                            <li>변경 내역과 문서 초안 정리</li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="workflow-disclosure">
+                    <strong>공개 기준</strong>
+                    <p>AI 사용량 자체를 성과로 주장하지 않습니다. 이 페이지의 대표 사례는 현재 코드 흐름과 근거를 다시 확인한 범위이며, 아직 설명하거나 검증하지 못한 기능은 핵심 사례에서 제외합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section-shell background" aria-labelledby="background-title">
+            <header class="section-title">
+                <p class="section-number">06</p>
                 <div><p class="eyebrow">BACKGROUND</p><h2 id="background-title">교육 및 자료 현황</h2></div>
             </header>
             <div class="education-list">
@@ -335,9 +451,9 @@ while (cursor.x != to.x)
             </div>
             <section class="material-status" aria-labelledby="material-status-title">
                 <h3 id="material-status-title">자료 현황</h3>
-                <dl><div><dt>확인 가능</dt><dd>Felheim 트레일러·담당 기능 시연, IDLE CITY 트레일러·전체 기능 영상, IDLE CITY 공개 저장소</dd></div><div><dt>추가 예정</dt><dd>실행 빌드 공개 링크, 프로젝트별 README 실행·재현 절차, Felheim 저장소 링크, 담당 코드 캡처와 입력 흐름 GIF</dd></div><div><dt>측정 전</dt><dd>동일 조건의 CPU Frame Time·GC Alloc·최대 Spawn Spike 전후 비교</dd></div></dl>
+                <dl><div><dt>확인 가능</dt><dd>상태 오류 3건의 코드 비교, Felheim 담당 기능 시연, IDLE CITY 공개 저장소·PR·회귀 테스트·플레이 영상</dd></div><div><dt>개발 방식</dt><dd>문제 정의 → 계획·승인 → AI 보조 구현 → diff·실행 검토 → Git 기록 순서와 사람·AI의 책임 범위</dd></div><div><dt>측정 전</dt><dd>동일 조건의 CPU Frame Time·GC Alloc·최대 Spawn Spike 전후 비교는 성능 결과로 주장하지 않음</dd></div></dl>
             </section>
-            <div class="contact-row"><div><p class="eyebrow">CONTACT</p><h3>프로젝트 담당 범위와 확인 자료를 정리했습니다.</h3></div><a class="button button-primary" href="mailto:rlarjs0720@naver.com">이메일 보내기</a></div>
+            <div class="contact-row"><div><p class="eyebrow">CONTACT</p><h3>상태 오류의 원인과 검증 근거를 설명할 수 있도록 정리했습니다.</h3></div><a class="button button-primary" href="mailto:rlarjs0720@naver.com">이메일 보내기</a></div>
         </section>
     </main>
 
