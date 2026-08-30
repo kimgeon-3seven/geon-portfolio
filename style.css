@@ -642,6 +642,161 @@ ul {
     line-height: 1.45;
 }
 
+.intro-proof {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 8px;
+    border-block: 1px solid var(--line-dark);
+}
+
+.intro-proof > div {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: baseline;
+    padding: 17px 18px;
+    border-right: 1px solid var(--line);
+}
+
+.intro-proof > div:first-child {
+    padding-left: 0;
+}
+
+.intro-proof > div:last-child {
+    border-right: 0;
+}
+
+.intro-proof dt {
+    color: var(--accent);
+    font: 700 20px/1.2 "Cascadia Code", Consolas, monospace;
+}
+
+.intro-proof dd {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.project-overview {
+    padding-top: 112px;
+    padding-bottom: 112px;
+    border-bottom: 1px solid var(--line-dark);
+}
+
+.compact-title .section-number {
+    font-size: 10px;
+}
+
+.project-snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin: 52px 0 0 110px;
+}
+
+.project-snapshot-grid > article {
+    min-width: 0;
+    background: var(--white);
+    border: 1px solid var(--line-dark);
+}
+
+.snapshot-media {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #171817;
+}
+
+.snapshot-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 240ms ease;
+}
+
+.snapshot-media:hover img,
+.snapshot-media:focus-visible img {
+    transform: scale(1.02);
+}
+
+.snapshot-media span {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 6px 8px;
+    background: rgba(24, 28, 25, 0.88);
+    color: #f2f0e8;
+    font: 700 9px/1.2 Consolas, monospace;
+    letter-spacing: 0.08em;
+}
+
+.snapshot-copy {
+    padding: 24px;
+}
+
+.snapshot-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ink);
+}
+
+.snapshot-heading h3 {
+    font-size: 25px;
+    letter-spacing: -0.04em;
+}
+
+.snapshot-heading p {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.snapshot-copy > p {
+    min-height: 78px;
+    margin-top: 18px;
+    color: #44423d;
+    font-size: 13px;
+}
+
+.snapshot-copy ul {
+    list-style: none;
+    margin-top: 18px;
+    padding: 0;
+    border-top: 1px solid var(--line);
+}
+
+.snapshot-copy li {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.snapshot-copy li::before {
+    content: "CHECK";
+    margin-right: 10px;
+    color: var(--signal-verify);
+    font: 700 9px/1 Consolas, monospace;
+}
+
+.snapshot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.snapshot-actions a {
+    color: var(--accent-dark);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
 .case-state-map {
     grid-column: 2;
     display: grid;
@@ -1252,6 +1407,101 @@ ul {
     font-size: 12px;
 }
 
+.learning-transfer {
+    display: grid;
+    grid-template-columns: 0.72fr 1.28fr;
+    gap: 48px;
+    margin: 62px 0 0 110px;
+    padding-top: 36px;
+    border-top: 1px solid #656c66;
+}
+
+.learning-transfer h3 {
+    margin-top: 8px;
+    font-size: 23px;
+    line-height: 1.45;
+    letter-spacing: -0.035em;
+}
+
+.learning-transfer ol {
+    list-style: none;
+    padding: 0;
+}
+
+.learning-transfer li {
+    display: grid;
+    grid-template-columns: 34px 130px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #444a45;
+}
+
+.learning-transfer li span {
+    color: #83af93;
+    font: 700 10px/1.5 Consolas, monospace;
+}
+
+.learning-transfer li strong {
+    font-size: 12px;
+}
+
+.learning-transfer li p {
+    color: #aeb4af;
+    font-size: 11px;
+}
+
+.entry-growth {
+    margin: 74px 0 0 110px;
+}
+
+.entry-growth header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ink);
+}
+
+.entry-growth header h3 {
+    margin-top: 8px;
+    font-size: 21px;
+    letter-spacing: -0.035em;
+}
+
+.entry-growth > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.entry-growth article {
+    min-height: 190px;
+    padding: 22px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.entry-growth article:first-child {
+    padding-left: 0;
+}
+
+.entry-growth article:last-child {
+    border-right: 0;
+}
+
+.entry-growth article span {
+    color: var(--accent);
+    font: 700 10px/1.4 Consolas, monospace;
+}
+
+.entry-growth article strong {
+    display: block;
+    margin-top: 28px;
+    font-size: 14px;
+}
+
+.entry-growth article p {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
 .site-footer {
     padding: 30px 0;
     background: var(--ink);
@@ -1300,6 +1550,12 @@ ul {
         margin-left: 0;
     }
 
+    .project-snapshot-grid,
+    .learning-transfer,
+    .entry-growth {
+        margin-left: 0;
+    }
+
     .state-pattern-grid,
     .mmorpg-bridge,
     .workflow-rail,
@@ -1336,6 +1592,11 @@ ul {
 
     .mmorpg-bridge {
         grid-template-columns: 1fr;
+    }
+
+    .learning-transfer {
+        grid-template-columns: 1fr;
+        gap: 28px;
     }
 
     .scope-note {
@@ -1542,6 +1803,34 @@ ul {
         margin-top: 18px;
     }
 
+    .intro-proof {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .intro-proof > div,
+    .intro-proof > div:first-child {
+        padding: 14px 10px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .intro-proof > div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .project-overview {
+        padding-top: 76px;
+        padding-bottom: 76px;
+    }
+
+    .project-snapshot-grid {
+        grid-template-columns: 1fr;
+        margin-top: 38px;
+    }
+
+    .snapshot-copy > p {
+        min-height: 0;
+    }
+
     .case-state-map {
         grid-column: 1;
         grid-template-columns: 1fr;
@@ -1578,6 +1867,25 @@ ul {
     .workflow-disclosure {
         grid-template-columns: 1fr;
         gap: 8px;
+    }
+
+    .learning-transfer li {
+        grid-template-columns: 30px 1fr;
+    }
+
+    .learning-transfer li p {
+        grid-column: 2;
+    }
+
+    .entry-growth > div {
+        grid-template-columns: 1fr;
+    }
+
+    .entry-growth article,
+    .entry-growth article:first-child {
+        min-height: 0;
+        padding: 20px 0;
+        border-right: 0;
     }
 
     .source-proof-header {
