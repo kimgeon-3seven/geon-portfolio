@@ -863,6 +863,8 @@ ul {
 }
 
 .debug-steps {
+    grid-column: 2;
+    min-width: 0;
     list-style: none;
     padding: 0 0 0 24px;
     border-left: 1px solid var(--line-dark);
@@ -903,8 +905,10 @@ ul {
 }
 
 .debug-steps p {
+    min-width: 0;
     color: #44423d;
     font-size: 14px;
+    overflow-wrap: anywhere;
 }
 
 .source-proof {
@@ -1790,6 +1794,7 @@ ul {
     }
 
     .debug-steps {
+        grid-column: 1;
         margin-left: 4px;
     }
 

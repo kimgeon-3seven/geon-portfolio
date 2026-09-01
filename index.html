@@ -186,10 +186,10 @@
                                 <div data-stage="verify"><span>VERIFY</span><strong>공격 주기 재확인</strong><small>동일 전투 반복</small></div>
                             </div>
                             <ol class="debug-steps">
-                                <li><span>오류</span><p>Blackboard 값이 예상대로 동기화되지 않아 적의 공격 쿨타임이 무시됐습니다.</p></li>
-                                <li><span>원인 확인</span><p>공격 노드의 조건과 값 갱신 시점을 따라가며 컴포넌트가 사용할 Blackboard 참조 지점을 좁혔습니다.</p></li>
-                                <li><span>수정</span><p>외부 패키지 소스를 직접 변경하지 않고 BehaviorGraphAgent의 BlackboardReference를 컴포넌트 레벨에서 참조하도록 분리했습니다.</p></li>
-                                <li><span>재검증</span><p>동일한 전투 흐름을 반복해 설정한 공격 주기가 적용되는지 다시 확인했습니다.</p></li>
+                                <li><span>오류</span><p>Blackboard 값이 갱신되지 않아 공격 쿨타임이 무시됐습니다.</p></li>
+                                <li><span>원인 확인</span><p>노드가 런타임 Agent가 아닌 직렬화 값을 참조했습니다.</p></li>
+                                <li><span>수정</span><p>Agent의 Blackboard를 직접 조회하도록 변경했습니다.</p></li>
+                                <li><span>재검증</span><p>동일 전투를 반복해 설정한 공격 주기를 확인했습니다.</p></li>
                             </ol>
                             <section class="source-proof" aria-labelledby="cooldown-source-title">
                                 <header class="source-proof-header">
@@ -239,10 +239,10 @@ return Time.time - lastTime &gt;= coolTime;</code></pre>
                                 <div data-stage="verify"><span>VERIFY</span><strong>생성 완료 확인</strong><small>중복 실행 방지</small></div>
                             </div>
                             <ol class="debug-steps">
-                                <li><span>오류</span><p>로딩 중 오브젝트 비활성화와 코루틴 중단이 겹치며 몬스터 생성 상태가 꼬였습니다.</p></li>
-                                <li><span>원인 확인</span><p>Addressables 완료 시점과 Unity 오브젝트 생명주기가 충돌하는 재현 경로를 확인했습니다.</p></li>
-                                <li><span>수정</span><p>렌더러·충돌체 제어와 생성 완료 콜백을 분리하고 중복 생성 방지 조건을 추가했습니다.</p></li>
-                                <li><span>재검증</span><p>같은 던전 진입 경로에서 로딩 완료와 생성 상태가 끝까지 이어지는지 반복 확인했습니다.</p></li>
+                                <li><span>오류</span><p>오브젝트 비활성화로 코루틴과 생성 과정이 중단됐습니다.</p></li>
+                                <li><span>원인 확인</span><p>Addressables 완료 전에 오브젝트 생명주기가 끝났습니다.</p></li>
+                                <li><span>수정</span><p>표시 제어와 생성 로직을 분리하고 중복 실행을 막았습니다.</p></li>
+                                <li><span>재검증</span><p>동일 진입 경로에서 생성 완료를 확인했습니다.</p></li>
                             </ol>
                             <section class="source-proof" aria-labelledby="addressables-source-title">
                                 <header class="source-proof-header">
@@ -345,10 +345,10 @@ gameObject.SetActive(false);</code></pre>
                                 <div data-stage="verify"><span>VERIFY</span><strong>순서 회귀 테스트</strong><small>(0, 0) → (0, 3)</small></div>
                             </div>
                             <ol class="debug-steps">
-                                <li><span>오류</span><p>드래그 속도가 빨라지면 입력 프레임 사이 타일이 누락되어 도로가 끊기고 오래된 요청이 남았습니다.</p></li>
-                                <li><span>원인 확인</span><p>이전 입력과 현재 입력의 그리드 좌표가 멀어질 때 중간 셀을 검사하지 않는 흐름을 확인했습니다.</p></li>
-                                <li><span>수정</span><p>두 좌표 사이의 셀을 보간해 경로를 채우고, 새 입력과 멀어진 오래된 건설 요청을 폐기했습니다.</p></li>
-                                <li><span>재검증</span><p>같은 드래그 경로를 다시 실행해 도로 연결을 확인하고 UI 위 입력은 Raycast 검사로 차단했습니다.</p></li>
+                                <li><span>오류</span><p>빠른 드래그에서 중간 셀이 누락되어 도로가 끊겼습니다.</p></li>
+                                <li><span>원인 확인</span><p>프레임 사이의 그리드 셀을 검사하지 않았습니다.</p></li>
+                                <li><span>수정</span><p>경로를 보간하고 오래된 건설 요청을 제거했습니다.</p></li>
+                                <li><span>재검증</span><p>도로 연결과 UI 위 입력 차단을 확인했습니다.</p></li>
                             </ol>
                             <section class="source-proof" aria-labelledby="drag-source-title">
                                 <header class="source-proof-header">
