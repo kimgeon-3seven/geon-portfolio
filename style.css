@@ -1146,6 +1146,20 @@ ul {
     border-top: 1px solid var(--line-dark);
 }
 
+.employment-history {
+    margin: 48px 0 0 110px;
+    padding: 26px;
+    border: 1px solid var(--line-dark);
+    background: var(--white);
+}
+.employment-history h3 { font-size: 18px; margin-bottom: 20px; }
+.employment-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px; }
+.employment-heading strong { font-size: 21px; }
+.employment-heading span { font-size: 13px; color: var(--muted); }
+.employment-history p { font-size: 14px; margin: 16px 0; }
+.employment-history a { font-size: 13px; }
+@media (max-width: 900px) { .employment-history { margin-left: 0; } }
+
 .education-list {
     margin: 54px 0 0 110px;
     border-top: 1px solid var(--ink);
@@ -1969,3 +1983,46 @@ ul {
     }
 }
 
+
+/* Core-loop project: retain the existing editorial layout and component styles. */
+.snapshot-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.05fr 1fr; }
+.snapshot-featured .snapshot-media { height: 100%; min-height: 280px; aspect-ratio: auto; }
+.snapshot-featured .snapshot-media img { object-fit: contain; }
+.snapshot-featured .snapshot-copy > p { min-height: 0; }
+.snapshot-featured .snapshot-heading { flex-wrap: wrap; gap: 8px 20px; }
+.release-status { color: var(--accent-dark); font-size: 11px; font-weight: 700; margin: 0 0 12px; }
+.snapshot-featured .snapshot-copy > .release-status { margin-top: 0; color: var(--accent-dark); font-size: 11px; }
+.snapshot-actions { flex-wrap: wrap; }
+.release-note { margin: 32px 0; padding: 20px 24px; border: 1px solid #bac9bc; border-left: 4px solid var(--signal-verify); background: #edf1e9; }
+.release-note strong { font-size: 15px; color: #315941; }
+.release-note p { color: #4f5b4e; font-size: 12px; margin-top: 6px; }
+.castle-flow, .castle-design { margin-top: 56px; }
+.castle-flow h4, .castle-design h4 { font-size: 24px; letter-spacing: -0.035em; margin-top: 10px; }
+.castle-flow ol { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; list-style: none; padding: 0; margin: 24px 0 16px; border: 1px solid var(--line-dark); background: var(--line-dark); }
+.castle-flow li { padding: 22px 18px; background: var(--white); min-width: 0; }
+.castle-flow li span, .castle-design-grid article > span { display: block; color: var(--accent); font: 700 11px/1.5 Consolas, monospace; }
+.castle-flow li strong { display: block; font-size: 16px; margin: 14px 0 10px; }
+.castle-flow li p { font-size: 12px; color: var(--muted); }
+.castle-evidence-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 20px; }
+.castle-evidence-links a, .castle-design-grid a { color: var(--accent-dark); font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.castle-design-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.castle-design-grid article { padding: 28px; background: var(--white); border: 1px solid var(--line); min-width: 0; }
+.castle-design-grid h5 { font-size: 19px; margin: 18px 0 14px; }
+.castle-design-grid p, .castle-design-grid ul { font-size: 13px; color: #44423d; }
+.castle-design-grid ul { margin: 18px 0; padding-left: 18px; }
+.castle-design-grid .note { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+.castle-chapter code { overflow-wrap: anywhere; }
+.state-pattern-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 900px) {
+    .snapshot-featured { grid-template-columns: 1fr; }
+    .snapshot-featured .snapshot-media { min-height: 0; aspect-ratio: 16 / 9; }
+    .castle-flow ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+    .castle-design-grid, .state-pattern-grid { grid-template-columns: 1fr; }
+    .castle-chapter .project-heading h3 { font-size: clamp(24px, 8vw, 36px); word-break: keep-all; }
+    .castle-flow h4, .castle-design h4 { font-size: 21px; }
+    .castle-design-grid article { padding: 22px; }
+    .release-note { padding: 16px; }
+    .castle-flow li { padding: 16px 12px; }
+}
