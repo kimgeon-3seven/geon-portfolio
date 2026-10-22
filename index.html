@@ -47,10 +47,10 @@
             <div class="intro-main">
                 <p class="eyebrow">ENTRY-LEVEL UNITY CLIENT PORTFOLIO</p>
                 <h1>상태가 어긋나는<br><em>순간을 추적합니다.</em></h1>
-                <p class="intro-summary">Unity 팀 프로젝트에서 맡은 기능을 구현하고, 프레임 사이의 입력·런타임 참조·비동기 생명주기처럼 눈에 보이는 증상 뒤의 상태 흐름을 다시 검토한 신입 클라이언트 개발자입니다.</p>
+                <p class="intro-summary">Unity 팀 프로젝트에서 맡은 기능을 구현하고, 프레임 사이의 입력·런타임 참조·비동기 생명주기·UI 동기화처럼 눈에 보이는 증상 뒤의 상태 흐름을 다시 검토한 신입 클라이언트 개발자입니다.</p>
                 <div class="intro-links" aria-label="외부 링크">
                     <a class="button button-primary" href="#project-overview">프로젝트와 담당 역할 보기</a>
-                    <a class="button" href="#evidence-index">상태 오류 3건</a>
+                    <a class="button" href="#evidence-index">상태 오류 4건</a>
                     <a class="button" href="#ai-workflow">AI 활용·검증 방식</a>
                     <a class="button" href="https://github.com/kimgeon-3seven" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
                 </div>
@@ -66,20 +66,33 @@
                 </dl>
             </aside>
             <dl class="intro-proof" aria-label="확인 가능한 프로젝트 근거">
-                <div><dt>02</dt><dd>완료한 팀 프로젝트</dd></div>
-                <div><dt>03</dt><dd>상태 오류 분석 사례</dd></div>
+                <div><dt>03</dt><dd>참여한 팀 프로젝트</dd></div>
+                <div><dt>04</dt><dd>상태 오류 분석 사례</dd></div>
                 <div><dt>01</dt><dd>공개 PR·회귀 테스트</dd></div>
-                <div><dt>04</dt><dd>플레이·기술 영상</dd></div>
+                <div><dt>05</dt><dd>플레이·기술 영상</dd></div>
             </dl>
         </section>
 
         <section id="project-overview" class="section-shell project-overview" aria-labelledby="project-overview-title">
             <header class="section-title compact-title">
                 <p class="section-number">PROJECT</p>
-                <div><p class="eyebrow">PROJECT SNAPSHOT</p><h2 id="project-overview-title">두 팀 프로젝트에서 맡은 역할</h2></div>
+                <div><p class="eyebrow">PROJECT SNAPSHOT</p><h2 id="project-overview-title">세 팀 프로젝트에서 맡은 역할</h2></div>
             </header>
             <p class="section-intro">신입 지원자로서 출시 수치보다 프로젝트의 규모, 담당 범위, 현재 확인 가능한 코드와 영상을 먼저 제시합니다.</p>
             <div class="project-snapshot-grid">
+                <article class="snapshot-featured">
+                    <a class="snapshot-media" href="#castle-defense" aria-label="용사때문에 레벨업 담당 기능과 사례로 이동">
+                        <img src="assets/images/castle-defense-preview.jpg" width="1280" height="720" loading="lazy" alt="용사때문에 레벨업의 준비 화면. 그리드 위 유닛과 보관함 카드를 배치하는 장면">
+                        <span>GRID DEFENSE · WINDOWS</span>
+                    </a>
+                    <div class="snapshot-copy">
+                        <p class="release-status">STOVE 심사 접수 · 심사 대기</p>
+                        <div class="snapshot-heading"><h3>용사때문에 레벨업</h3><p>2026.09.02 ~ 2026.10.14</p></div>
+                        <p>넥스트러너스 재직 중 참여한 프로젝트입니다. 준비·전투·보상·재도전 코어루프와 그리드 배치를 담당하고, 팀원의 전투·UI 시스템을 연결했습니다.</p>
+                        <ul><li>런·보상 요청 ID로 단계 전환 검증</li><li>결과 상태와 팝업·입력 차단 동기화</li></ul>
+                        <div class="snapshot-actions"><a href="#castle-defense">담당 기능 보기</a><a href="#castle-case-retry">재도전 UI 오류 사례</a><a href="#castle-gameplay">플레이 영상 01:30</a></div>
+                    </div>
+                </article>
                 <article>
                     <a class="snapshot-media" href="#felheim" aria-label="Felheim 상세 사례로 이동">
                         <img src="felheim_intro.png" alt="Felheim 전투 장면">
@@ -116,13 +129,14 @@
         <section id="evidence-index" class="section-shell evidence-index" aria-labelledby="evidence-index-title">
             <header class="section-title">
                 <p class="section-number">01</p>
-                <div><p class="eyebrow">STATE FAILURE INDEX</p><h2 id="evidence-index-title">상태가 어긋난 세 순간</h2></div>
+                <div><p class="eyebrow">STATE FAILURE INDEX</p><h2 id="evidence-index-title">상태가 어긋난 네 순간</h2></div>
             </header>
             <p class="section-intro">프로젝트 이름보다 오류가 발생한 경계를 기준으로 사례를 다시 묶었습니다. 각 사례는 증상, 상태 흐름, 변경 지점, 재검증 자료 순서로 확인할 수 있습니다.</p>
             <div class="case-index-list">
                 <a href="#felheim-case-cooldown"><span class="case-no">01</span><span class="case-project">런타임 참조</span><strong>상태의 기준점이 달랐습니다</strong><span class="case-tech">Behavior Tree</span><span aria-hidden="true">↘</span></a>
                 <a href="#felheim-case-addressables"><span class="case-no">02</span><span class="case-project">비동기 경계</span><strong>생명주기가 실행을 끊었습니다</strong><span class="case-tech">Addressables</span><span aria-hidden="true">↘</span></a>
                 <a href="#idle-case-drag"><span class="case-no">03</span><span class="case-project">프레임 경계</span><strong>입력 사이의 상태가 사라졌습니다</strong><span class="case-tech">Grid Input</span><span aria-hidden="true">↘</span></a>
+                <a href="#castle-case-retry"><span class="case-no">04</span><span class="case-project">UI 동기화</span><strong>재도전 뒤 이전 결과창이 남았습니다</strong><span class="case-tech">Core Loop · UGUI</span><span aria-hidden="true">↘</span></a>
             </div>
         </section>
 
@@ -140,7 +154,7 @@
             <div class="role-note">
                 <div class="role-view"><span>포트폴리오 공개 기준</span><strong>현재 근거를 다시 확인한 범위만 사례로 사용</strong><p>코드 비교, 변경 기록, 실행 영상 또는 회귀 테스트로 확인할 수 없는 내용은 대표 성과에서 제외했습니다.</p></div>
             </div>
-            <p class="skill-line"><strong>확인된 기술 범위</strong><span>Unity / C# / Behavior Tree / Addressables / Scriptable Object / Observer Pattern / DOTween</span></p>
+            <p class="skill-line"><strong>확인된 기술 범위</strong><span>Unity / C# / async·CancellationToken / UGUI / Grid / ScriptableObject / Behavior Tree / Addressables</span></p>
         </section>
 
         <section id="projects" class="projects">
@@ -149,10 +163,94 @@
                 <div><p class="eyebrow">PROJECTS</p><h2>담당 기능과 구현 오류</h2></div>
             </header>
 
-            <article id="felheim" class="project chapter" aria-labelledby="felheim-title">
+
+            <article id="castle-defense" class="project chapter castle-chapter" aria-labelledby="castle-title">
                 <div class="section-shell">
                     <header class="project-header">
                         <div class="project-number">01</div>
+                        <div class="project-heading"><p class="eyebrow">넥스트러너스 재직 중 참여 · 백팩형 그리드 디펜스 로그라이크</p><h3 id="castle-title">용사때문에 레벨업</h3><p>코어루프 · 그리드 배치 · 보상 처리 · 결과 UI 연동</p></div>
+                        <p class="project-period">개발 기간<br>2026.09.02 ~ 2026.10.14</p>
+                    </header>
+                    <div class="release-note"><strong>STOVE 이용등급·빌드 심사 접수 · 심사 대기</strong><p>2026.10.22 기준 · 이용등급·빌드 심사를 접수하고 심사 시작을 기다리고 있습니다.</p></div>
+                    <dl class="project-meta" aria-label="용사때문에 레벨업 프로젝트 정보">
+                        <div><dt>개발 환경</dt><dd>Unity 6 / C# / UGUI / ScriptableObject</dd></div>
+                        <div><dt>담당 범위</dt><dd>코어루프, 그리드 규칙, 일반 보상, 결과·재도전 연결, 전장 표현</dd></div>
+                        <div><dt>확인 자료</dt><dd>담당 커밋, 검증 코드·기록, 90초 팀 플레이 설명 영상</dd></div>
+                    </dl>
+                    <p class="project-summary">유닛을 배치·합성해 용사 웨이브를 방어하는 게임입니다. 준비에서 전투, 보상과 재도전까지 이어지는 흐름을 담당했습니다. 게임 규칙·데이터·화면을 분리하고 팀원이 개발한 전투·스킬·증강 시스템을 인터페이스로 연결했습니다.</p>
+                    <div class="decision-table" aria-label="코어루프 설계 결정">
+                        <div><span>문제</span><p>준비·전투·보상·UI가 각자 진행되면 지급이 끝나기 전에 다음 라운드가 시작되거나 이전 결과창이 남을 수 있습니다.</p></div>
+                        <div><span>제약</span><p>팀원의 전투와 UI 구현을 유지하면서, 취소·패배·재도전 경로에서도 현재 실행의 상태만 반영해야 했습니다.</p></div>
+                        <div><span>구현</span><p>일반 C# 클래스인 StageManager가 진행 순서를 제어하고, 인터페이스로 전투·보상·준비를 연결했습니다. RunId와 요청 ID를 확인하고 단계 완료를 기다린 뒤 전환합니다.</p></div>
+                    </div>
+                    <section class="castle-flow" aria-labelledby="castle-flow-title">
+                        <p class="eyebrow">CORE LOOP · RESPONSIBILITY</p><h4 id="castle-flow-title">단계가 끝났을 때 다음 단계로 넘어갑니다.</h4>
+                        <ol><li><span>01 · PREPARE</span><strong>준비·배치</strong><p>점유·연결 조건 검증<br>배치 스냅샷 생성</p></li><li><span>02 · BATTLE</span><strong>전투 실행</strong><p>팀 전투 시스템 호출<br>종료·취소·정리 대기</p></li><li><span>03 · REWARD</span><strong>보상·증강</strong><p>요청 ID 확인<br>실제 지급 완료 대기</p></li><li><span>04 · NEXT</span><strong>다음 준비 / 최종 결과</strong><p>일반 승리 → 다음 준비<br>최종 승리·패배 → 결과</p></li></ol>
+                        <p class="note">보스 웨이브는 일반 보상 후 증강 선택을 연결합니다. 최종 결과에서 재도전하면 새 RunId로 시작합니다. 최종 승리·패배는 전투 결과에 따라 최종 결과 단계로 분기합니다.</p>
+                    </section>
+                    <figure id="castle-gameplay" class="media-block">
+                        <div class="media-heading"><span>TEAM GAMEPLAY / 01:30</span><small>배치 · 직업 · 시너지 · 스킬</small></div>
+                        <video controls playsinline preload="none" poster="assets/images/castle-defense-preview.jpg" aria-label="용사때문에 레벨업 90초 플레이 설명 영상"><source src="assets/videos/castle-defense-gameplay.mp4" type="video/mp4">브라우저에서 영상을 재생할 수 없습니다.</video>
+                        <figcaption>팀 통합 빌드의 실제 플레이 설명 영상입니다. 전투 AI·직업별 스킬·최종 UI 전체를 개인 구현으로 주장하지 않으며, 아래에 담당 범위와 코드 근거를 구분했습니다.</figcaption>
+                    </figure>
+                    <section class="debug-section" aria-labelledby="castle-debug-title">
+                        <header><p class="eyebrow">IMPLEMENTATION DEBUGGING</p><h4 id="castle-debug-title">진행은 재시작됐지만 화면은 이전 결과에 머물렀습니다.</h4></header>
+                        <article id="castle-case-retry" class="debug-case">
+                            <div class="debug-case-title"><span>CASE 04</span><h5>재도전 후 패배 팝업 잔류</h5></div>
+                            <div class="case-state-map" aria-label="재도전 UI 동기화 오류와 수정 흐름">
+                                <div data-stage="event"><span>EVENT</span><strong>다른 경로에서 Retry</strong><small>Bootstrap 직접 호출</small></div><i aria-hidden="true">→</i>
+                                <div data-stage="break"><span>STATE BREAK</span><strong>버튼 전용 닫기 누락</strong><small>결과 UI가 이전 상태 유지</small></div><i aria-hidden="true">→</i>
+                                <div data-stage="fix"><span>FIX</span><strong>결과 해제와 동기화</strong><small>해당 팝업만 정리</small></div><i aria-hidden="true">→</i>
+                                <div data-stage="verify"><span>VERIFY</span><strong>중첩 메뉴·입력 검증</strong><small>RunId·포커스 확인</small></div>
+                            </div>
+                            <ol class="debug-steps">
+                                <li><span>증상</span><p>패배 후 재도전하면 새 게임은 시작됐지만 이전 결과 팝업이 남았습니다.</p></li>
+                                <li><span>원인</span><p>팝업 닫기가 UI Bridge의 RetryResult 버튼 경로에만 있었습니다. 더미 UI에서 Bootstrap을 직접 호출하면 닫기 처리를 거치지 않았습니다.</p></li>
+                                <li><span>수정</span><p>결과 데이터가 해제될 때 승리·패배 팝업을 정리하도록 옮겼습니다. 결과 위에 메뉴가 열려 있어도 해당 결과창만 제거하고, 입력 차단과 포커스 기록을 함께 갱신했습니다.</p></li>
+                                <li><span>재검증</span><p>직접 Retry, 메뉴가 열린 상태의 Retry, 잘못된 RunId, 중복 닫기와 초기화 실패를 확인했습니다. 재도전 요청 거절 시에는 기존 결과창을 유지합니다.</p></li>
+                            </ol>
+                            <section class="source-proof" aria-labelledby="castle-retry-code-title">
+                                <header class="source-proof-header"><div><span>CODE EVIDENCE · b590109</span><h6 id="castle-retry-code-title">클릭 경로 대신 결과 상태를 기준으로 화면 정리</h6></div><p><code>UIInGameBattleBridge.cs</code> · 2026.10.06 담당 커밋 발췌</p></header>
+                                <div class="source-compare">
+                                    <figure class="source-pane"><figcaption><span>BEFORE</span><strong>특정 Retry 경로에서만 닫기</strong></figcaption><pre><code>if (result == null ||
+    !_bootstrap.TryRetryResult(result.RunId))
+    return false;
+
+CloseResultPopupIfTop();
+return true;</code></pre></figure>
+                                    <figure class="source-pane source-pane-after"><figcaption><span>AFTER</span><strong>결과 상태가 해제되면 동기화</strong></figcaption><pre><code>if (result == null)
+{
+    _shownResultRunId = null;
+    _popupController?.CloseResolvedPopup(
+        _victoryPopup);
+    _popupController?.CloseResolvedPopup(
+        _defeatPopup);
+    return;
+}</code></pre></figure>
+                                </div>
+                                <p class="source-note">같은 메서드의 전후 비교가 아니라, 버튼 경로에서 제거한 처리와 결과 갱신 경로에 추가한 처리를 비교한 발췌입니다. CloseResolvedPopup은 팝업 목록·입력 차단·선택 복원 정보를 함께 정리합니다.</p>
+                                <div class="castle-evidence-links"><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/commit/b590109b6304a40cafeb664fd52e78e1376f9ba2" target="_blank" rel="noopener noreferrer">실제 수정 커밋 ↗</a><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Assets/_Project/Scripts/Core/InGame/Editor/ResultPopupVerification.cs" target="_blank" rel="noopener noreferrer">팝업 검증 코드 ↗</a><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Docs/OutdoorBattlefield-Camps-81.md" target="_blank" rel="noopener noreferrer">Play Mode 검증 기록 ↗</a></div>
+                            </section>
+                        </article>
+                    </section>
+                    <section class="castle-design" aria-labelledby="castle-design-title">
+                        <p class="eyebrow">DESIGN DECISIONS</p><h4 id="castle-design-title">배치와 보상도 완료 조건을 분리했습니다.</h4>
+                        <div class="castle-design-grid">
+                            <article id="castle-reward-design"><span>01 · REWARD</span><h5>선택과 지급 완료는 다릅니다.</h5><p>보관함 공간이 부족하면 카드 선택만으로 보상을 완료할 수 없습니다. 공간 확보와 실제 지급이 끝날 때까지 다음 준비 단계를 열지 않도록 구성했습니다.</p><ul><li>RunId·요청 ID와 처리 상태로 중복 요청 검사</li><li>공간 확보 취소 시 같은 보상 후보 유지</li><li>SO 가중치 추첨과 확장 불가 시 대체 보상</li></ul><p class="note">실행 중 요청 검증 범위입니다. 강제 종료 후 보상 복원과 계정 단위 트랜잭션은 이 구현의 성과에 포함하지 않습니다.</p><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/929f39e/Docs/CoreLoop-GeneralRewards-TeamGuide.md" target="_blank" rel="noopener noreferrer">보상 설계·연동 근거 ↗</a></article>
+                            <article id="castle-grid-design"><span>02 · GRID</span><h5>배치 편집과 전투 데이터를 분리합니다.</h5><p>준비 단계의 그리드는 배치 규칙을 검사하고, 전투가 시작될 때 GridDeploymentSnapshot을 전달합니다. 화면과 전투가 같은 편집 상태를 임의로 수정하지 않도록 역할을 나눴습니다.</p><ul><li>HashSet으로 점유 칸 검사, BFS로 연결 여부 검사</li><li>양쪽 배치 조건을 검증한 뒤 유닛 위치 교환</li><li>현재 런·라운드·보상 상태에 맞는 전환만 허용</li></ul><p class="note">성급별 콘텐츠와 전투 유닛 구현은 팀과 연동했습니다. 알고리즘 사용 자체를 성능 개선 수치로 주장하지 않습니다.</p><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/faf5a4f/Assets/_Project/Scripts/Grid/GridRunSession.cs" target="_blank" rel="noopener noreferrer">배치 스냅샷·단계 검증 코드 ↗</a></article>
+                        </div>
+                    </section>
+                    <div class="project-detail-grid">
+                        <section aria-labelledby="castle-scope-title"><h4 id="castle-scope-title">담당 구현과 팀 연동 범위</h4><ul class="plain-list"><li><strong>담당 구현</strong><span>StageManager 진행 제어, 그리드·보관함 조작, 일반 보상, 결과·재도전 연결</span></li><li><strong>팀 시스템 연동</strong><span>팀원의 전투·스킬·증강 시스템 및 UI를 코어루프의 시작·종료 시점과 연결</span></li><li><strong>표현·출시 준비</strong><span>타일 테마·난이도별 천막·카메라 연결, 플레이 테스트와 설명 영상·GIF 제작</span></li><li><strong>팀원 담당</strong><span>전투 AI와 직업별 공격·힐, 특성·스킬 트리, 업적·이어하기, 최종 UI와 후속 연출</span></li></ul></section>
+                        <section class="verification" aria-labelledby="castle-verify-title"><h4 id="castle-verify-title">검증 기록과 범위</h4><dl><div><dt>기존 검증</dt><dd>ResultPopupVerification·RunResultVerification, 실제 패배 후 재도전, 메뉴 중첩 시 입력 차단·복원 확인</dd></div><div><dt>제한</dt><dd>승리 팝업은 정산 완료 테스트 결과를 주입해 확인했습니다. 모든 난이도 완주나 후속 통합 빌드 전체의 무오류를 보장하는 결과는 아닙니다.</dd></div><div><dt>근거 시점</dt><dd>2026.09–10 담당 커밋과 당시 검증 문서 기준입니다. 이후 팀원의 기능 확장은 별도 기여로 구분합니다.</dd></div></dl></section>
+                    </div>
+                </div>
+            </article>
+
+            <article id="felheim" class="project chapter" aria-labelledby="felheim-title">
+                <div class="section-shell">
+                    <header class="project-header">
+                        <div class="project-number">02</div>
                         <div class="project-heading"><p class="eyebrow">2인 팀 · 4주 · 3D 액션</p><h3 id="felheim-title">Felheim</h3><p>Behavior Tree · 데이터 구조 · 구역별 로드 · 피드백 연출</p></div>
                         <p class="project-period">2026.05.28 — 06.24<br><strong>완료</strong></p>
                     </header>
@@ -311,7 +409,7 @@ gameObject.SetActive(false);</code></pre>
             <article id="idle-city" class="project chapter chapter-alt" aria-labelledby="idle-city-title">
                 <div class="section-shell">
                     <header class="project-header">
-                        <div class="project-number">02</div>
+                        <div class="project-number">03</div>
                         <div class="project-heading"><p class="eyebrow">5인 팀 · 6주 · 방치형 시뮬레이션</p><h3 id="idle-city-title">IDLE CITY</h3><p>건설 입력 · 배치 피드백 · HUD · 공용 Prefab 연결</p></div>
                         <p class="project-period">2026.07 — 08<br><strong>완료</strong></p>
                     </header>
@@ -414,7 +512,7 @@ while (cursor.x != to.x)
         <section id="state-lab" class="section-shell state-lab" aria-labelledby="state-lab-title">
             <header class="section-title">
                 <p class="section-number">04</p>
-                <div><p class="eyebrow">CLIENT STATE LAB</p><h2 id="state-lab-title">두 프로젝트에서 확인한 세 오류 패턴</h2></div>
+                <div><p class="eyebrow">CLIENT STATE LAB</p><h2 id="state-lab-title">세 프로젝트에서 확인한 네 오류 패턴</h2></div>
             </header>
             <p class="section-intro">장르와 기능은 달랐지만 문제는 같은 질문으로 모였습니다. 상태의 주인은 누구인지, 실행은 어디서 끊기는지, 프레임 사이에 무엇이 사라지는지를 확인했습니다.</p>
             <div class="state-pattern-grid">
@@ -435,6 +533,13 @@ while (cursor.x != to.x)
                     <h3>Frame Continuity</h3>
                     <p>프레임마다 관찰된 지점만 처리하지 않고, 이전 상태와 현재 상태 사이의 누락 구간을 복원합니다.</p>
                     <a href="#idle-case-drag">드래그 입력 사례 보기 ↗</a>
+                </article>
+
+                <article>
+                    <span class="pattern-index">PATTERN 04</span>
+                    <h3>State-driven UI</h3>
+                    <p>버튼마다 화면을 닫는 대신, 게임의 결과 상태가 해제되는 시점에 팝업·입력 차단·포커스를 함께 동기화합니다.</p>
+                    <a href="#castle-case-retry">재도전 결과 UI 사례 보기 ↗</a>
                 </article>
             </div>
             <div class="mmorpg-bridge">
@@ -512,15 +617,21 @@ while (cursor.x != to.x)
         <section id="education" class="section-shell background" aria-labelledby="background-title">
             <header class="section-title">
                 <p class="section-number">06</p>
-                <div><p class="eyebrow">BACKGROUND</p><h2 id="background-title">교육 및 자료 현황</h2></div>
+                <div><p class="eyebrow">BACKGROUND</p><h2 id="background-title">경력·교육 및 자료 현황</h2></div>
             </header>
+            <section class="employment-history" aria-labelledby="employment-title">
+                <h3 id="employment-title">경력</h3>
+                <div class="employment-heading"><strong>넥스트러너스</strong><span>계약 기간 · <time datetime="2026-09-02">2026.09.02</time> ~ <time datetime="2026-10-14">2026.10.14</time></span></div>
+                <p>재직 기간에 「용사때문에 레벨업」 개발에 참여했습니다. 코어루프·그리드 배치·일반 보상·결과 및 재도전 연결을 담당했습니다.</p>
+                <a class="text-link" href="#castle-defense">담당 프로젝트와 구현 근거 보기 ↗</a>
+            </section>
             <div class="education-list">
-                <div><time>2026.02 — 08</time><strong>오즈코딩스쿨 게임개발캠프 5기</strong><span>수료</span></div>
+                <div><time>2026.02.05 ~ 2026.08.19</time><strong>오즈코딩스쿨 · AI를 활용한 차세대 스마트 게임 개발자 양성과정</strong><span>수료</span></div>
                 <div><time>2019.03 — 2026.02</time><strong>고려대학교 세종캠퍼스 · 인문사회디지털융합 / 미디어문예창작</strong><span>수료</span></div>
             </div>
             <section class="material-status" aria-labelledby="material-status-title">
                 <h3 id="material-status-title">자료 현황</h3>
-                <dl><div><dt>확인 가능</dt><dd>상태 오류 3건의 코드 비교, Felheim 담당 기능 시연, IDLE CITY 공개 저장소·PR·회귀 테스트·플레이 영상</dd></div><div><dt>개발 방식</dt><dd>문제 정의 → 계획·승인 → AI 보조 구현 → diff·실행 검토 → Git 기록 순서와 사람·AI의 책임 범위</dd></div><div><dt>측정 전</dt><dd>동일 조건의 CPU Frame Time·GC Alloc·최대 Spawn Spike 전후 비교는 성능 결과로 주장하지 않음</dd></div></dl>
+                <dl><div><dt>확인 가능</dt><dd>상태 오류 4건의 코드 비교, 용사때문에 레벨업의 코어루프·보상 설계와 검증 기록, Felheim 기술 시연, IDLE CITY 공개 PR·회귀 테스트·플레이 영상</dd></div><div><dt>개발 방식</dt><dd>문제 정의 → 계획·승인 → AI 보조 구현 → diff·실행 검토 → Git 기록 순서와 사람·AI의 책임 범위</dd></div><div><dt>측정 전</dt><dd>동일 조건의 CPU Frame Time·GC Alloc·최대 Spawn Spike 전후 비교는 성능 결과로 주장하지 않음</dd></div></dl>
             </section>
             <section class="entry-growth" aria-labelledby="entry-growth-title">
                 <header><p class="eyebrow">ENTRY-LEVEL GROWTH</p><h3 id="entry-growth-title">현재 경험을 다음 기본기로 확장합니다.</h3></header>
