@@ -47,10 +47,10 @@
             <div class="intro-main">
                 <p class="eyebrow">ENTRY-LEVEL UNITY CLIENT PORTFOLIO</p>
                 <h1>상태가 어긋나는<br><em>순간을 추적합니다.</em></h1>
-                <p class="intro-summary">Unity 클라이언트 개발자로서 《용사때문에 레벨업》의 코어루프, 그리드 배치, 일반 보상, 결과·재도전 UI 연동을 맡았습니다. 재도전 후 이전 결과창이 남는 문제를 수정하고, 실제 패배 후 직접 재도전과 메뉴가 열린 상태에서의 재도전을 확인했습니다.</p>
+                <p class="intro-summary">《용사때문에 레벨업》에서 코어루프·그리드 배치·일반 보상·결과 및 재도전 UI 연동을 맡았습니다. 이전 결과창이 남는 오류를 수정하고, 실제 패배 후 직접 재도전과 메뉴가 열린 상태에서의 재도전을 각각 검증했습니다.</p>
                 <div class="intro-links" aria-label="주요 링크">
-                    <a class="button button-primary" href="#project-overview">프로젝트와 담당 역할 보기</a>
-                    <a class="button" href="#castle-case-retry">QA 검증 사례 보기</a>
+                    <a class="button button-primary" href="#castle-case-retry">QA 검증 사례 보기</a>
+                    <a class="button" href="#project-overview">프로젝트와 담당 역할 보기</a>
                     <a class="button" href="#evidence-index">상태 오류 4건</a>
                     <a class="button" href="#ai-workflow">AI 활용·검증 방식</a>
                     <a class="button" href="https://github.com/kimgeon-3seven" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
@@ -59,7 +59,7 @@
 
             <aside class="intro-facts" aria-label="지원자 정보">
                 <dl>
-                    <div><dt>지원 직무</dt><dd>신입 Unity 클라이언트 개발</dd></div>
+                    <div><dt>개발 경험</dt><dd>Unity 클라이언트 개발</dd></div>
                     <div><dt>문제 관점</dt><dd>상태 흐름 · 실행 순서 · 생명주기</dd></div>
                     <div><dt>개발 환경</dt><dd>Unity · C# · UGUI · Git</dd></div>
                     <div><dt>확인 자료</dt><dd>코드 비교 · PR · 회귀 테스트 · 영상</dd></div>
@@ -201,7 +201,13 @@
                             <ol class="debug-steps" aria-label="재현·수정·재검증 요약">
                                 <li><span>재현</span><p>패배 뒤 더미 UI가 Bootstrap을 직접 호출하면 새 게임이 시작돼도 이전 패배 팝업이 남았습니다.</p></li>
                                 <li><span>수정</span><p>버튼의 닫기 처리를 결과 상태 갱신으로 옮겨, 결과 데이터가 해제될 때 해당 팝업과 입력·포커스 상태를 정리했습니다.</p></li>
-                                <li><span>재검증</span><p>Unity Play Mode에서 실제 패배 후 직접 재도전하면 배치 입력이 복구됐고, 메뉴를 열고 재도전하면 결과창만 닫히고 메뉴와 입력 차단은 유지됐습니다.</p></li>
+                                <li><span>재검증</span><div>
+                                    <p>Unity Play Mode에서 실제 패배 후 두 가지 재도전 경로를 확인했습니다.</p>
+                                    <div class="retry-checks">
+                                        <p><strong>직접 재도전</strong> · 배치 입력 복구</p>
+                                        <p><strong>메뉴가 열린 상태에서 재도전</strong> · 결과창만 닫히고 메뉴와 입력 차단 유지</p>
+                                    </div>
+                                </div></li>
                             </ol>
                             <div class="case-state-map" aria-label="재도전 UI 동기화 오류와 수정 흐름">
                                 <div data-stage="event"><span>EVENT</span><strong>다른 경로에서 Retry</strong><small>Bootstrap 직접 호출</small></div><i aria-hidden="true">→</i>
@@ -231,6 +237,7 @@ return true;</code></pre></figure>
                                 <p class="source-note">같은 메서드의 전후 비교가 아니라, 버튼 경로에서 제거한 처리와 결과 갱신 경로에 추가한 처리를 비교한 발췌입니다. CloseResolvedPopup은 팝업 목록·입력 차단·선택 복원 정보를 함께 정리합니다.</p>
                                 <p class="source-note">잘못된 RunId로 재도전이 거절되면 기존 결과창이 남는 것을 확인했습니다. 중복 닫기와 초기화 실패 조건도 확인했습니다.</p>
                                 <div class="castle-evidence-links"><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/commit/b590109b6304a40cafeb664fd52e78e1376f9ba2" target="_blank" rel="noopener noreferrer">실제 수정 커밋 ↗</a><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Assets/_Project/Scripts/Core/InGame/Editor/ResultPopupVerification.cs" target="_blank" rel="noopener noreferrer">팝업 검증 코드 ↗</a><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Docs/OutdoorBattlefield-Camps-81.md" target="_blank" rel="noopener noreferrer">Play Mode 검증 기록 ↗</a></div>
+                                <div class="castle-evidence-links"><a href="#idle-case-drag">IDLE CITY · 빠른 드래그에서 도로가 끊기는 오류의 회귀 테스트 보기 ↓</a></div>
                             </section>
                         </article>
                     </section>
