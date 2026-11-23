@@ -911,6 +911,16 @@ ul {
     overflow-wrap: anywhere;
 }
 
+.retry-checks {
+    display: grid;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.retry-checks strong {
+    color: var(--ink);
+}
+
 .source-proof {
     grid-column: 2;
     min-width: 0;
