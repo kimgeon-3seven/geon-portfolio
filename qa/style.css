@@ -99,6 +99,15 @@ summary:hover { background: #edf1f1; }
 .test-list { display: grid; gap: .55rem; }
 .test-case summary { display: flex; justify-content: space-between; align-items: center; gap: .8rem; }
 .case-id { font-size: .875rem; }
+.retry-analysis, .test-context { margin-top: 1.4rem; }
+.retry-analysis h3, .test-context h3, .test-context h4 { margin-bottom: .4rem; }
+.retry-path { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem; list-style: none; padding: 0; margin: .75rem 0; }
+.retry-path li { background: var(--white); border: 1px solid var(--line); padding: .65rem .8rem; }
+.retry-path span { display: block; color: var(--muted); font-size: .875rem; }
+#test-scope { scroll-margin-block-start: 1.25rem; }
+.run-card a[href="#test-scope"] { white-space: nowrap; }
+.test-context ul { margin: 0; padding-inline-start: 1.25rem; color: var(--muted); }
+.risk-list { margin-top: .4rem; }
 .history .eyebrow, .project .eyebrow { color: var(--blue); margin-bottom: .5rem; }
 .history-note { margin-top: .75rem; }
 .two-up { margin-top: 1.1rem; }
@@ -111,6 +120,7 @@ summary:hover { background: #edf1f1; }
 .experience-note p + p { margin-top: .25rem; }
 .three-up { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .project { display: flex; flex-direction: column; align-items: flex-start; }
+.project-roles p + p { margin-top: .55rem; }
 .project a { margin-top: auto; padding-top: .7rem; font-weight: 700; }
 .skill-list > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); gap: .35rem 1rem; padding: .85rem 0; border-bottom: 1px solid var(--line); }
 .skill-list dt { font-weight: 700; }
@@ -135,7 +145,7 @@ summary:hover { background: #edf1f1; }
     .actions { margin-top: 1.05rem; }
     .section-head { align-items: start; flex-direction: column; gap: .55rem; }
     .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .comparison, .two-up, .three-up, .skill-list > div { grid-template-columns: 1fr; }
+    .comparison, .two-up, .three-up, .skill-list > div, .retry-path { grid-template-columns: 1fr; }
     .test-case summary { padding-left: .75rem; gap: .5rem; }
 }
 
