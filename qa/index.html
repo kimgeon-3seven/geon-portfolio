@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="김건의 게임 QA 포트폴리오. STOVE 출시 빌드 테스트, 그리드 표시 결함 보고, Unity Play Mode 재테스팅과 리그레션 테스팅 기록입니다.">
+    <meta name="description" content="김건의 게임 QA 포트폴리오. STOVE 출시 빌드 테스트와 결함 재현, Unity Play Mode 수정·재검증 기록입니다.">
     <title>김건 · 게임 QA 포트폴리오</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
         <div class="shell header-inner">
             <a class="brand" href="#top"><strong>김건</strong><span>Game QA Portfolio</span></a>
             <nav aria-label="주요 메뉴">
-                <a href="#bug-grid">대표 결함</a>
+                <a href="#featured-cases">대표 사례</a>
                 <a href="#test-results">테스트 결과</a>
                 <a href="#retry-history">재검증</a>
                 <a href="#resources">관련 자료</a>
@@ -23,206 +23,289 @@
         </div>
     </header>
 
-    <main id="main" tabindex="-1" class="shell">
+    <main id="main" tabindex="-1">
         <section class="hero" id="top" aria-labelledby="intro-title">
-            <div class="hero-copy">
-                <p class="eyebrow">GAME QA PORTFOLIO</p>
-                <h1 id="intro-title">게임의 의도와<br>실제 동작의 차이를<br class="hero-break"> <em>검증합니다.</em></h1>
-                <p class="lead">Unity·C# 팀 개발과 STOVE 출시 경험을 바탕으로 게임을 검증합니다. 《용사때문에 레벨업》 출시 빌드에서 발견한 결함의 재현 절차와 관찰 결과를 기록했습니다.</p>
-                <ul class="credentials" aria-label="배경 및 학습 이력">
-                    <li>Unity·C# 기초 활용</li><li>STOVE 출시 참여</li><li>CSTS 일반등급 학습·응시</li>
-                </ul>
-                <div class="actions">
-                    <a class="button primary" href="#bug-grid">대표 결함 분석 보기</a>
-                    <a class="button" href="#test-results">테스트 결과 보기</a>
-                    <a class="quiet-link" href="#resources">포트폴리오 자료</a>
-                    <a class="quiet-link" href="../index.html">개발 포트폴리오 보기</a>
-                </div>
-            </div>
-
-            <aside class="run-card" aria-labelledby="run-title">
-                <p class="eyebrow">STOVE · WINDOWS</p>
-                <h2 id="run-title">출시 빌드 테스트</h2>
-                <p class="run-context">《용사때문에 레벨업》 · 보통 난이도</p>
-                <dl class="metrics">
-                    <div><dt>테스트 케이스</dt><dd>4<span>건</span></dd></div>
-                    <div class="pass"><dt>통과</dt><dd>3<span>건</span></dd></div>
-                    <div class="fail"><dt>실패</dt><dd>1<span>건</span></dd></div>
-                    <div><dt>결함 보고서</dt><dd>1<span>건</span></dd></div>
-                </dl>
-                <p class="small">통과 3건에는 화면에서 확인한 범위로 판정한 TC-SAVE-001이 포함됩니다. <a href="#test-scope">검증 범위 보기</a></p>
-                <p class="small run-environment">V1–V5 실행일 <time datetime="2026-11-25">2026.11.25</time><br>V1–V5 환경(수행자 기록) · Windows 11 Home 25H2 · OS 빌드 26200.9974</p>
-            </aside>
-        </section>
-
-        <section id="bug-grid" class="section" aria-labelledby="bug-title">
-            <header class="section-head">
-                <div><p class="eyebrow">BUG-GRID-001 · 출시 빌드</p><h2 id="bug-title">유닛을 보관해도 이전 배치 칸에<br class="wide-break"> 보라색 원이 남습니다</h2></div>
-                <span class="badge fail">재현 확인 · 수정 여부 미확인</span>
-            </header>
-            <p class="section-lead">빈 칸이 점유된 것처럼 보여 다음 배치를 판단하기 어렵습니다. 관찰한 실행에서는 유닛을 다시 배치하고 전투를 이어갈 수 있었습니다.</p>
-            <dl class="bug-meta">
-                <div><dt>심각도</dt><dd>하 · 수행자 평가</dd></div>
-                <div><dt>결함 수정 우선순위</dt><dd>중간 · 제안</dd></div>
-                <div><dt>발생 빈도</dt><dd>반복 관찰 · 빈도 등급·재현율 미산정</dd></div>
-                <div><dt>연결 테스트</dt><dd><a href="#tc-grid">TC-GRID-001 · 실패</a></dd></div>
-            </dl>
-            <div class="comparison">
-                <article><h3>기대 결과</h3><p>전사를 보관하면 빈 칸의 원이 즉시 사라집니다. 재배치하면 현재 유닛 위치에만 원이 표시됩니다.</p></article>
-                <article class="observed"><h3>실제 결과</h3><p>웨이브 2 준비 단계에서 빈 A에 원이 남았습니다. B로 옮겨 전투한 뒤 웨이브 3에서 보관하자 빈 B에 원이 남고 A에서는 사라졌습니다.</p></article>
-            </div>
-            <div class="panel evidence-panel">
-                <h3>재현 절차와 V11 관찰 기록</h3>
-                <p><strong>사전 조건</strong> · STOVE 출시 빌드의 보통 난이도에서 초기 지급 1성 전사 1기(합성 없음)와 빈 보관 슬롯을 준비합니다. A는 웨이브 1 배치 칸입니다. A 바로 위 B는 비워 두고 전사를 배치할 수 있는 발판을 확보합니다.</p>
-                <ol class="evidence-steps" id="v11-evidence">
-                    <li>
-                        <span class="timecode">1단계 · V11 00:03</span>
-                        <strong>A에 전사 배치</strong>
-                        <p>전사를 A에 놓고 B를 비워 둔 채 웨이브 1을 시작합니다.</p>
-                        <p class="evidence-range">00:06 전투 시작 · 00:15 클리어 · 00:21 다음 준비 단계</p>
-                    </li>
-                    <li>
-                        <span class="timecode">2단계 · V11 00:24</span>
-                        <strong>보관 후 빈 A에 원 잔류</strong>
-                        <p>웨이브 2 준비에서 A의 전사를 보관합니다. 전사는 사라졌고 빈 A에는 보라색 원이 남았습니다.</p>
-                        <p class="evidence-range">확인 구간 00:23–00:24</p>
-                    </li>
-                    <li>
-                        <span class="timecode">3단계 · V11 00:39</span>
-                        <strong>B에 재배치해도 A의 원 유지</strong>
-                        <p>같은 전사를 B에 놓고 웨이브 2를 시작합니다. 전투를 시작하기 전 빈 A의 원이 계속 보였습니다.</p>
-                        <p class="evidence-range">확인 구간 00:32–00:42 · 후반은 전투 진입</p>
-                    </li>
-                    <li>
-                        <span class="timecode">4단계 · V11 00:54</span>
-                        <strong>다음 전투 후 빈 B에 원 잔류</strong>
-                        <p>웨이브 3 준비에서 B의 전사를 보관합니다. 빈 B에 원이 남았고 빈 A의 원은 사라져 있었습니다.</p>
-                        <p class="evidence-range">확인 구간 00:50–00:54</p>
-                    </li>
-                </ol>
-                <p class="small evidence-note">A의 원이 사라진 정확한 시점과 내부 원인은 미확인입니다. 결함 수정 여부는 확인되지 않았고 수정 후 재테스팅 기록은 없습니다.</p>
-                <details>
-                    <summary>발생 조건 비교와 보조 증거</summary>
-                    <div class="details-body">
-                        <p><strong>발생·유지 조건</strong> · 전투 뒤 유닛을 보관하면 직전 배치 칸에 원이 남았습니다. V11에서는 같은 전사를 B로 옮겨도 빈 A에 남은 원이 유지됐습니다.</p>
-                        <p><strong>해소 관찰</strong> · 다음 전투 후 B에서 전사를 보관한 시점에 A의 원이 사라져 있었습니다.</p>
-                        <ul><li><strong>V6 · 최초 관찰</strong> 보관 뒤 빈 칸에 남은 원은 커서를 옮겨도 유지됐습니다.</li><li><strong>V7 · 반복 관찰</strong> 웨이브 2 준비 단계에서 다시 나타났습니다.</li><li><strong>V8 · 조건 비교</strong> 합성하지 않은 초기 전사에서도 관찰했습니다.</li><li><strong>V9 · 조건 비교</strong> 보상 유닛을 포함해 전투 직전 배치 구역과 다음 준비 단계의 빈 네 칸의 표시를 대조했습니다.</li></ul>
+            <div class="shell hero-grid">
+                <div>
+                    <p class="eyebrow">GAME QA PORTFOLIO</p>
+                    <h1 id="intro-title">게임의 의도와<br>실제 동작의 차이를<br><em>검증합니다.</em></h1>
+                    <p class="hero-lead">Unity·C# 팀 개발과 STOVE 출시 경험을 바탕으로 게임을 검증합니다. 출시 빌드의 결함 재현과 개발 중 수정·재검증을 기록했습니다.</p>
+                    <ul class="credentials" aria-label="기술과 학습 이력">
+                        <li>Unity·C# 기초 활용</li><li>STOVE 출시 참여</li><li>CSTS 일반등급 학습·응시</li>
+                    </ul>
+                    <div class="actions">
+                        <a class="button primary" href="#featured-cases">대표 QA 사례 보기</a>
+                        <a class="button secondary" href="#test-results">테스트 결과 보기</a>
                     </div>
-                </details>
+                    <a class="hero-link" href="../index.html">개발 포트폴리오 보기</a>
+                </div>
+                <figure class="hero-media">
+                    <img src="../assets/images/castle-defense-preview.jpg" width="1280" height="720" fetchpriority="high" alt="《용사때문에 레벨업》 전투 준비 화면. 격자 위에 유닛이 배치되어 있고 하단에 보관 카드가 보입니다.">
+                    <figcaption><strong>용사때문에 레벨업</strong><span>STOVE 출시 · 실제 플레이</span></figcaption>
+                </figure>
             </div>
         </section>
 
-        <section id="test-results" class="section" aria-labelledby="test-title">
-            <header class="section-head"><div><p class="eyebrow">STOVE 출시 빌드</p><h2 id="test-title">테스트 케이스와 실행 결과</h2></div></header>
-            <div class="test-list">
-                <details id="tc-retry" class="test-case">
-                    <summary><span><span class="case-id">TC-RETRY-001 · 우선순위 높음</span><strong>패배 후 로비 복귀 및 새 도전</strong></span><span class="badge pass">통과</span></summary>
-                    <div class="details-body">
-                        <p>웨이브 5에서 패배한 뒤 결과창의 ‘뒤로’를 눌러 로비로 이동하고 다시 전투를 준비했습니다. 이전 결과창 없이 유닛 배치, 전투 시작, 첫 웨이브 보상까지 확인했습니다.</p>
-                        <p class="small">V1·V2는 수행자가 동일 실행으로 확인한 두 영상이며, 영상 사이 조작은 미확인입니다. V4는 추가 관찰입니다.</p>
-                        <div class="retry-analysis" aria-labelledby="retry-analysis-title">
-                            <h3 id="retry-analysis-title">실행 경로를 상태 전이로 정리</h3>
-                            <p class="small">실행 후 CSTS에서 학습한 상태 전이 관점으로 STOVE 사용자 경로를 재구성했습니다.</p>
-                            <ol class="retry-path">
-                                <li><strong>패배 결과 → 로비</strong><span>‘뒤로’ 입력 · V1, 약 00:08 로비 확인</span></li>
-                                <li><strong>로비 → 새 도전 준비</strong><span>‘전투 준비’ 선택 · V1, 약 00:23 준비 화면 확인</span></li>
-                                <li><strong>새 도전 준비 → 첫 전투</strong><span>유닛 배치 후 ‘전투 시작’ · V2, 약 00:10–00:16</span></li>
-                                <li><strong>첫 전투 → 보상 화면</strong><span>첫 웨이브 클리어 · V2, 약 00:18–00:20</span></li>
-                            </ol>
-                            <p class="small">확인 지점은 새 도전에서 이전 결과창이 남지 않는지와 배치·전투 입력이 처리되는지입니다.</p>
+        <div class="shell">
+            <section id="run-summary" class="overview" aria-labelledby="run-title">
+                <div class="overview-intro">
+                    <p class="eyebrow">출시 이후 개인 QA 실습</p>
+                    <h2 id="run-title">출시 빌드 테스트</h2>
+                    <p>STOVE · 보통 난이도</p>
+                </div>
+                <div>
+                    <dl class="metrics">
+                        <div><dt>테스트 케이스</dt><dd>4<span>건</span></dd></div>
+                        <div class="pass"><dt>통과</dt><dd>3<span>건</span></dd></div>
+                        <div class="fail"><dt>실패</dt><dd>1<span>건</span></dd></div>
+                        <div><dt>결함 보고서</dt><dd>1<span>건</span></dd></div>
+                    </dl>
+                    <p class="small metric-note">TC-SAVE-001은 화면에서 확인한 범위에서 통과했습니다. 개발 당시 검증 H-01·H-02는 이 집계에서 제외했습니다.</p>
+                </div>
+            </section>
+
+            <section id="featured-cases" class="section" aria-labelledby="featured-title">
+                <header class="section-head">
+                    <h2 id="featured-title">대표 QA 사례</h2>
+                    <p>출시 빌드의 결함 재현과 개발 중 수정·재검증 기록</p>
+                </header>
+                <div class="featured-grid">
+                    <article class="featured-card">
+                        <figure class="case-media">
+                            <img src="./media/castle-placement.webp" width="1120" height="630" loading="lazy" alt="공개 플레이 영상의 준비 단계. 한 유닛을 선택하고 격자 배치를 준비하는 화면입니다.">
+                            <figcaption>공개 플레이 · 유닛 배치 장면</figcaption>
+                        </figure>
+                        <div class="featured-body">
+                            <p class="eyebrow">개인 QA 실습 · BUG-GRID-001</p>
+                            <h3 id="bug-title">유닛을 보관해도<br class="desktop-break"> 이전 배치 칸에 원이 남습니다</h3>
+                            <p>직전 배치 칸에 남은 보라색 원을 발견하고, 같은 전사를 A와 B에 배치해 발생 조건을 비교했습니다. 빈 칸이 점유된 것처럼 보였지만 재배치와 전투 진행은 가능했습니다.</p>
+                            <p class="small case-source">V11 대표 증거는 별도 제출 QA 엑셀에서 확인할 수 있습니다.</p>
+                            <div class="card-footer">
+                                <span class="badge fail">재현 확인 · 수정 여부 미확인</span>
+                                <a class="detail-link" href="#bug-grid">결함 보고서 보기</a>
+                            </div>
                         </div>
-                    </div>
-                </details>
-                <details id="tc-growth" class="test-case">
-                    <summary><span><span class="case-id">TC-GROWTH-001 · 우선순위 높음</span><strong>패배 이후 성장 상태 유지</strong></span><span class="badge pass">통과</span></summary>
-                    <div class="details-body"><p>같은 실행에서 패배 전후의 마왕 LV.2, 규모 확장, 얼음 가시 해금·장착 상태를 비교했습니다. 새 도전에서도 그리드 추가 1칸과 얼음 가시 시전을 확인했습니다.</p><p class="small">증거 V3·V4. 화면에서 비교한 성장 항목이 검증 범위입니다.</p></div>
-                </details>
-                <details id="tc-save" class="test-case">
-                    <summary><span><span class="case-id">TC-SAVE-001 · 우선순위 높음</span><strong>정상 종료 후 재실행에서 성장 상태 복원</strong></span><span class="badge pass">통과 <span class="badge-note">관찰 범위</span></span></summary>
-                    <div class="details-body"><p>종료 전 V4와 재실행 후 V5에서 LV.2, 특성, 스킬 해금과 슬롯 구성을 비교했습니다. 새 도전에서 그리드 추가 1칸과 얼음 가시 시전까지 확인했습니다.</p><p class="small">정상 종료와 STOVE ‘실행’은 수행자 확인 U-01에 근거합니다. 정확한 누적 XP는 미확인입니다.</p></div>
-                </details>
-                <details class="test-case">
-                    <summary><span><span class="case-id">TC-GRID-001 · 테스트 우선순위 중간</span><strong>유닛 보관 및 배치 표시 갱신</strong></span><span class="badge fail">실패</span></summary>
-                    <div class="details-body" id="tc-grid" tabindex="-1">
-                        <p><strong>사전 조건</strong> · 보통 난이도, 초기 지급 1성 전사 1기(합성 없음), 빈 보관 슬롯. A 바로 위의 빈 칸 B에 배치할 수 있도록 발판을 확보합니다.</p>
-                        <p>초기 전사를 A와 B에 배치해 각각 전투한 뒤 보관 시점의 표시를 비교했습니다. 이전 전투에서 배치했던 빈 칸에 원이 남았습니다.</p>
-                        <p><a href="#bug-grid">BUG-GRID-001 결함 보고</a> · <a href="#v11-evidence">V11 관찰 기록</a></p>
-                    </div>
-                </details>
-            </div>
-            <div class="test-context" id="test-scope" aria-labelledby="test-scope-title">
-                <h3 id="test-scope-title">검증 범위와 한계</h3>
-                <p>STOVE 최초 출시 빌드의 보통 난이도에서 확인했습니다. V1–V5의 실행일은 <time datetime="2026-11-25">2026.11.25</time>이며, Windows 11 Home 25H2(OS 빌드 26200.9974)와 전체화면·창 모드 사용은 수행자 기록입니다.</p>
-                <div class="two-up">
-                    <article class="panel"><h4>확인한 범위</h4><ul><li>패배 후 로비 복귀와 새 도전 진입</li><li>화면에 표시된 성장 항목의 패배 후 유지와 재실행 후 복원·적용</li><li>유닛 보관과 재배치 전후의 그리드 표시</li></ul></article>
-                    <article class="panel"><h4>미검증·미확인</h4><ul><li>다른 난이도·플랫폼, 환경별 호환성, 성능과 밸런스</li><li>내부 저장 데이터와 정확한 누적 XP</li><li>배치 표시 결함 영상(V6–V9·V11)의 실행일과 OS</li><li>영상별 화면 모드와 실제 해상도. ENV-01 원본 이미지는 미첨부.</li><li>배치 표시 결함의 내부 원인, 재현율과 수정 여부</li></ul></article>
+                    </article>
+
+                    <article class="featured-card">
+                        <div class="proof-preview" aria-label="공개 PR 83 검증 기록 요약">
+                            <p class="proof-label"><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/pull/83">GitHub PR #83</a></p>
+                            <strong>Bootstrap Retry</strong>
+                            <dl>
+                                <div><dt>H-01 · 재테스팅</dt><dd>결과창 닫힘 · 배치·전투 복구</dd></div>
+                                <div><dt>H-02 · 회귀 테스트</dt><dd>메뉴와 입력 차단 동작 유지</dd></div>
+                            </dl>
+                        </div>
+                        <div class="featured-body">
+                            <p class="eyebrow">팀 개발 당시 · UNITY PLAY MODE</p>
+                            <h3 id="retry-title">재도전 결과창 오류 수정과 재검증</h3>
+                            <p>테스트용 Bootstrap Retry 직접 호출에서 결과창이 남는 오류를 수정했습니다. 결과 데이터 해제 시 결과창을 닫고, 같은 경로와 주변 메뉴·입력 동작을 검증했습니다.</p>
+                            <div class="card-footer">
+                                <span class="badge verified">수정 및 재검증 기록</span>
+                                <a class="detail-link" href="#retry-history">재검증 기록 보기</a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
+
+                <div class="case-details">
+                    <details class="disclosure">
+                        <summary>BUG-GRID-001 상세 · 사전 조건과 V11 재현 절차</summary>
+                        <div id="bug-grid" class="details-body anchor-detail" tabindex="-1">
+                            <dl class="bug-meta">
+                                <div><dt>심각도</dt><dd>하 · 수행자 평가</dd></div>
+                                <div><dt>결함 수정 우선순위</dt><dd>중간 · 제안</dd></div>
+                                <div><dt>발생 가능성</dt><dd>반복 관찰 · 등급·재현율 미산정</dd></div>
+                                <div><dt>연결 테스트</dt><dd><a href="#tc-grid">TC-GRID-001 · 실패</a></dd></div>
+                            </dl>
+                            <dl class="readout">
+                                <div><dt>기대 결과</dt><dd>보관하면 빈 칸의 원이 즉시 사라지고, 재배치하면 현재 유닛 위치에만 원이 표시됩니다.</dd></div>
+                                <div><dt>실제 결과</dt><dd>웨이브 2에서 보관 뒤 빈 A에 원이 남았습니다. B에서 전투한 뒤 웨이브 3에서 보관하자 빈 B에 원이 남고 A에서는 사라졌습니다.</dd></div>
+                            </dl>
+                            <h3>재현 절차와 V11 관찰 기록</h3>
+                            <p><strong>사전 조건</strong> · STOVE 출시 빌드, 보통 난이도, 초기 지급 1성 전사 1기(합성 없음), 빈 보관 슬롯. A 바로 위의 빈 칸 B에 전사를 배치할 발판을 확보합니다.</p>
+                            <ol id="v11-evidence" class="evidence-steps">
+                                <li><span class="timecode">V11 · 00:03</span><strong>A에 전사 배치</strong><p>B를 비운 채 웨이브 1에 진입합니다. 00:06 전투 시작, 00:15 클리어, 00:21 웨이브 2 준비를 확인했습니다.</p></li>
+                                <li><span class="timecode">V11 · 00:24</span><strong>보관 후 빈 A에 원 잔류</strong><p>웨이브 2 준비에서 전사를 보관하면 전사는 사라지고 A의 원이 남았습니다. 확인 구간 00:23–00:24.</p></li>
+                                <li><span class="timecode">V11 · 00:39</span><strong>B에 재배치해도 A의 원 유지</strong><p>같은 전사를 B에 배치해도 전투 시작 전 빈 A의 원이 남았습니다. 확인 구간 00:32–00:42, 후반은 전투 진입입니다.</p></li>
+                                <li><span class="timecode">V11 · 00:54</span><strong>다음 전투 후 빈 B에 원 잔류</strong><p>웨이브 3 준비에서 전사를 보관하자 B에 원이 남고 A의 원은 사라져 있었습니다. 확인 구간 00:50–00:54.</p></li>
+                            </ol>
+                            <p class="record-note">V11 대표 이미지 4장은 지원서에 별도 첨부하는 QA 엑셀의 ‘결함 기록’에서 확인할 수 있습니다.</p>
+                            <p class="small">A의 표시 해제 시점, 내부 원인, 수정 여부는 미확인입니다. 수정 후 재테스팅 기록은 없습니다.</p>
+                            <details class="disclosure nested">
+                                <summary>V6–V9 보조 관찰 기록</summary>
+                                <ul class="support-list">
+                                    <li><strong>V6 · 최초 관찰</strong> 보관 뒤 빈 칸의 원이 커서를 옮겨도 유지됐습니다. 창 모드는 수행자 확인입니다.</li>
+                                    <li><strong>V7 · 반복 관찰</strong> 웨이브 2 준비에서 보관 후 표시가 다시 남았습니다.</li>
+                                    <li><strong>V8 · 조건 비교</strong> 합성하지 않은 초기 전사에서도 관찰했습니다.</li>
+                                    <li><strong>V9 · 조건 비교</strong> 보상 유닛을 포함해 전투 직전 배치 구역과 다음 준비 단계의 빈 네 칸을 대조했습니다.</li>
+                                </ul>
+                            </details>
+                        </div>
+                    </details>
+                    <details class="disclosure">
+                        <summary>PR #83 상세 · 수정과 Play Mode 검증</summary>
+                        <div id="retry-history" class="details-body anchor-detail" tabindex="-1">
+                            <p>패배 후 테스트용 Bootstrap Retry를 직접 호출하면 이전 결과창이 남았습니다. 결과 데이터가 해제될 때 결과창도 닫히도록 수정하고, 검증 결과를 PR #83으로 팀에 공유했습니다.</p>
+                            <dl class="readout">
+                                <div><dt>H-01 · 동일 경로 재테스팅</dt><dd>헬 난이도 패배 후 Bootstrap Retry 경로에서 팝업 수가 0이 됐고 배치 입력과 전투 시작이 복구됐습니다.</dd></div>
+                                <div><dt>H-02 · 주변 동작 회귀 테스트</dt><dd>결과창 위에 메뉴가 열린 채 Bridge Retry를 호출했습니다. 결과창만 닫히고 메뉴와 입력 차단이 유지됐으며, 메뉴를 닫자 배치 입력이 복구됐습니다.</dd></div>
+                            </dl>
+                            <p class="small">개발 당시 Unity Play Mode 이력입니다. STOVE 사용자 경로 TC-RETRY-001은 별도의 출시 빌드 테스트입니다.</p>
+                            <div class="text-links">
+                                <a href="https://github.com/OZ-GAME-LAB/OZGL2_1/pull/83">GitHub PR #83</a>
+                                <a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Docs/OutdoorBattlefield-Camps-81.md#재도전-후-결과-팝업-잔류-수정">Play Mode 검증 기록</a>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section id="test-results" class="section" aria-labelledby="test-title">
+                <header class="section-head">
+                    <h2 id="test-title">테스트 케이스와 실행 결과</h2>
+                    <a href="#test-scope">검증 범위 보기</a>
+                </header>
+                <div class="test-list">
+                    <details id="tc-retry" class="disclosure test-case">
+                        <summary><span><span class="case-id">TC-RETRY-001 · 우선순위 높음</span><strong>패배 후 로비 복귀 및 새 도전</strong></span><span class="badge pass">통과</span></summary>
+                        <div class="details-body">
+                            <dl class="readout">
+                                <div><dt>기대 결과</dt><dd>로비를 거쳐 새 도전에 진입하면 이전 결과창이 남지 않고 배치와 전투 입력이 동작합니다.</dd></div>
+                                <div><dt>실제 결과</dt><dd>웨이브 5 패배 후 로비를 거쳐 첫 웨이브 준비에 진입했습니다. 이전 결과창 없이 배치, 전투 시작, 첫 보상까지 확인했습니다.</dd></div>
+                            </dl>
+                            <p class="small">증거 V1·V2·V4. V1·V2는 수행자가 동일 실행으로 확인했고 영상 사이 조작은 미확인입니다. V4는 추가 관찰이며 내부 Retry·실행 로그·다른 난이도와 모드별 독립 검증은 미확인입니다.</p>
+                            <div class="retry-analysis" aria-labelledby="retry-analysis-title">
+                                <h3 id="retry-analysis-title">실행 후 재구성한 상태 전이</h3>
+                                <ol class="retry-path">
+                                    <li><strong>패배 결과 → 로비</strong><span>‘뒤로’ 입력 · V1, 약 00:08</span></li>
+                                    <li><strong>로비 → 새 도전 준비</strong><span>‘전투 준비’ 선택 · V1, 약 00:23</span></li>
+                                    <li><strong>새 도전 준비 → 첫 전투</strong><span>배치 후 ‘전투 시작’ · V2, 약 00:10–00:16</span></li>
+                                    <li><strong>첫 전투 → 보상 화면</strong><span>첫 웨이브 클리어 · V2, 약 00:18–00:20</span></li>
+                                </ol>
+                            </div>
+                            <p class="case-risk"><strong>사후 품질 리스크</strong> · 패배 뒤 로비나 준비 화면으로 이동할 수 없으면 새 도전을 시작하기 어렵습니다.</p>
+                        </div>
+                    </details>
+                    <details id="tc-growth" class="disclosure test-case">
+                        <summary><span><span class="case-id">TC-GROWTH-001 · 우선순위 높음</span><strong>패배 이후 성장 상태 유지</strong></span><span class="badge pass">통과</span></summary>
+                        <div class="details-body">
+                            <dl class="readout">
+                                <div><dt>기대 결과</dt><dd>패배 후에도 마왕 레벨과 투자한 특성, 해금·장착한 스킬이 유지되고 새 도전에 적용됩니다.</dd></div>
+                                <div><dt>실제 결과</dt><dd>마왕 LV.2, 규모 확장 1/2, 얼음 가시 해금·장착 상태를 비교했습니다. 새 도전에서 그리드 1칸 추가와 얼음 가시 시전을 확인했습니다.</dd></div>
+                            </dl>
+                            <p class="small">증거 V3·V4. 화면에서 비교한 성장 항목에 한합니다. 정확한 XP·피해·감속 수치, 다른 특성·스킬과 내부 저장 데이터는 미확인입니다.</p>
+                            <p class="case-risk"><strong>사후 품질 리스크</strong> · 패배로 획득한 성장 상태가 사라지면 다음 도전의 성장 경험이 달라집니다.</p>
+                        </div>
+                    </details>
+                    <details id="tc-save" class="disclosure test-case">
+                        <summary><span><span class="case-id">TC-SAVE-001 · 우선순위 높음</span><strong>정상 종료 후 재실행에서 성장 상태 복원</strong></span><span class="badge pass">통과 <span class="badge-note">관찰 범위</span></span></summary>
+                        <div class="details-body">
+                            <dl class="readout">
+                                <div><dt>기대 결과</dt><dd>정상 종료 후 다시 실행하면 비교한 성장 항목이 유지되고 새 도전에 적용됩니다.</dd></div>
+                                <div><dt>실제 결과</dt><dd>V4와 V5의 LV.2, 특성, 스킬 해금과 슬롯 구성을 비교했습니다. 새 도전에서 그리드 1칸 추가와 얼음 가시 시전을 확인했습니다.</dd></div>
+                            </dl>
+                            <p class="small">증거 V4·V5·U-01. 정상 종료와 STOVE의 ‘실행’은 수행자 확인입니다. 정확한 누적 XP는 미확인입니다.</p>
+                            <p class="case-risk"><strong>사후 품질 리스크</strong> · 레벨·특성·스킬이 복원되지 않거나 새 도전에 적용되지 않으면 이전 진행을 이어가기 어렵습니다.</p>
+                        </div>
+                    </details>
+                    <details class="disclosure test-case">
+                        <summary><span><span class="case-id">TC-GRID-001 · 테스트 우선순위 중간</span><strong>유닛 보관 및 배치 표시 갱신</strong></span><span class="badge fail">실패</span></summary>
+                        <div id="tc-grid" class="details-body anchor-detail" tabindex="-1">
+                            <p><strong>사전 조건</strong> · 보통 난이도, 초기 지급 1성 전사 1기(합성 없음), 빈 보관 슬롯. A 바로 위 빈 칸 B에 배치할 수 있도록 발판을 확보합니다.</p>
+                            <dl class="readout">
+                                <div><dt>기대 결과</dt><dd>전사를 보관하면 빈 칸의 원이 사라지고, 재배치하면 현재 위치에만 원이 표시됩니다.</dd></div>
+                                <div><dt>실제 결과</dt><dd>A와 B에서 각각 전투한 뒤 표시를 비교했습니다. 직전 전투에 배치했던 빈 칸에 원이 남았습니다.</dd></div>
+                            </dl>
+                            <p class="small">주 증거 V11. 내부 원인, 정확한 표시 해제 시점, 재현율과 수정 여부는 미확인입니다.</p>
+                            <p class="case-risk"><strong>사후 품질 리스크</strong> · 빈 칸이 점유된 것처럼 보이면 다음 유닛을 둘 위치를 잘못 판단할 수 있습니다.</p>
+                            <div class="text-links"><a href="#bug-grid">BUG-GRID-001 결함 보고</a><a href="#v11-evidence">V11 관찰 기록</a></div>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section id="test-scope" class="section scope" aria-labelledby="test-scope-title">
+                <header class="section-head"><h2 id="test-scope-title">검증 범위와 한계</h2></header>
+                <div class="scope-grid">
+                    <article><h3>확인한 범위</h3><ul><li>패배 후 로비 복귀와 새 도전</li><li>표시된 성장 항목의 유지·복원 및 적용</li><li>보관·재배치 전후의 그리드 표시</li></ul></article>
+                    <article><h3>미검증·미확인</h3><ul><li>다른 난이도·플랫폼, 호환성, 성능과 밸런스</li><li>내부 저장 데이터와 정확한 누적 XP</li><li>배치 표시 결함의 내부 원인, 재현율과 수정 여부</li></ul></article>
+                </div>
+                <details class="disclosure environment">
+                    <summary>실행 환경과 증거 범위</summary>
+                    <div class="details-body">
+                        <p>STOVE 최초 출시 빌드의 보통 난이도에서 확인했습니다. V1–V5 실행일은 <time datetime="2026-11-25">2026.11.25</time>입니다. Windows 11 Home 25H2, OS 빌드 26200.9974와 전체화면·창 모드 사용은 V1–V5 수행자 기록입니다.</p>
+                        <p class="small">ENV-01 원본 이미지는 미첨부 상태입니다. 영상별 화면 모드와 실제 해상도, V6–V9·V11의 실행일과 OS는 미확인입니다.</p>
+                        <p class="small" id="risks-title">사후 품질 리스크는 <a href="#test-results">각 테스트 상세</a>에 정리했습니다.</p>
+                    </div>
+                </details>
+            </section>
+
+            <section id="projects" class="section" aria-labelledby="projects-title">
+                <header class="section-head"><h2 id="projects-title">게임 개발 프로젝트</h2></header>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <img src="./media/castle-combat.webp" width="960" height="540" loading="lazy" alt="《용사때문에 레벨업》의 웨이브 전투와 스킬 시전 장면">
+                        <div class="project-body">
+                            <p class="eyebrow">STOVE 출시 · 4인 팀 · 6주</p><h3>용사때문에 레벨업</h3>
+                            <p><strong>개발 당시</strong> 코어루프, 그리드 배치, 일반 보상과 결과·재도전 연동을 맡았습니다. 재도전 UI를 수정·검증하고 STOVE 출시에 참여했습니다.</p>
+                            <p><strong>출시 이후</strong> 개인 QA 실습으로 TC 4건을 실행하고 그리드 결함을 보고했습니다.</p>
+                            <a href="../index.html#castle-defense">용사때문에 레벨업 담당 기능 보기</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="./media/felheim.webp" width="960" height="540" loading="lazy" alt="Felheim의 적 행동 시연. 유닛이 전장 건너편의 적을 마주한 화면입니다.">
+                        <div class="project-body">
+                            <p class="eyebrow">3D 액션 · 2인 팀</p><h3>Felheim</h3>
+                            <p>적 행동과 구역별 몬스터 생성을 맡았습니다. 공격 쿨타임의 참조 불일치와 Addressables 비동기 생성 중 상태가 바뀌는 조건을 분석했습니다.</p>
+                            <a href="../index.html#felheim">Felheim 담당 기능 보기</a>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="./media/idle-city.webp" width="960" height="540" loading="lazy" alt="IDLE CITY의 도로와 건물 배치를 확인하는 건설 화면">
+                        <div class="project-body">
+                            <p class="eyebrow">방치형 시뮬레이션 · 5인 팀</p><h3>IDLE CITY</h3>
+                            <p>건설 입력과 배치 피드백을 맡았습니다. 빠른 드래그에서 도로가 끊기는 조건을 확인하고 공개 PR에 입력 순서 회귀 검증을 기록했습니다.</p>
+                            <a href="../index.html#idle-case-drag">IDLE CITY 회귀 테스트 보기</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <div class="section tools-grid">
+                <section id="skills" aria-labelledby="skills-title">
+                    <h2 id="skills-title">보유기술과 활용 범위</h2>
+                    <dl class="skills-list">
+                        <div><dt>테스트 설계·결함 보고 <span>기초</span></dt><dd>CSTS 일반등급 학습·응시, TC 설계와 결함 보고 실습</dd></div>
+                        <div><dt>GitHub 협업·이슈 공유 <span>팀 프로젝트 활용</span></dt><dd>PR에 변경 사항, 재현 조건과 검증 결과를 공유</dd></div>
+                        <div><dt>C#·Unity <span>기초 활용</span></dt><dd>기능 구현, 게임 진행 흐름과 관련 코드 확인</dd></div>
+                    </dl>
+                </section>
+                <section id="approach" aria-labelledby="approach-title">
+                    <h2 id="approach-title">QA 접근 방식</h2>
+                    <ol class="workflow">
+                        <li>의도와 기대 결과 확인</li><li>테스트 설계·실행</li><li>결함 재현·조건 분석</li><li>근거 기록·공유</li><li>수정 후 검증</li>
+                    </ol>
+                    <dl class="experience">
+                        <div><dt>수행 경험</dt><dd>출시 빌드 테스트, 그리드 결함 보고, Play Mode 수정 검증</dd></div>
+                        <div><dt>학습 범위</dt><dd>동등 분할, 경계값 분석, 상태 전이</dd></div>
+                        <div><dt>향후 목표</dt><dd>유저 로그로 재현 조건을 좁히고 이슈의 처리 경과를 관리</dd></div>
+                    </dl>
+                </section>
             </div>
-            <div class="test-context" aria-labelledby="risks-title">
-                <h3 id="risks-title">검증 대상별 품질 리스크</h3>
-                <p class="small">실행 기록을 바탕으로 각 테스트가 어떤 플레이 문제를 확인하는지 사후 정리했습니다.</p>
-                <dl class="skill-list risk-list">
-                    <div><dt>TC-RETRY-001 · 진행 연속성</dt><dd>패배 뒤 로비나 준비 화면으로 이동할 수 없으면 새 도전을 시작하기 어렵습니다.</dd></div>
-                    <div><dt>TC-GROWTH-001 · 도전 간 성장 유지</dt><dd>패배로 이미 획득한 성장 상태가 사라지면 다시 도전할 때의 성장 경험이 달라집니다.</dd></div>
-                    <div><dt>TC-SAVE-001 · 재실행 후 복원</dt><dd>레벨·특성·스킬이 재실행 후 복원되지 않거나 새 도전에 적용되지 않으면 이전 진행을 이어가기 어렵습니다.</dd></div>
-                    <div><dt>TC-GRID-001 · 배치 표시 일치</dt><dd>비어 있는 칸이 점유된 것처럼 보이면 다음 유닛을 둘 위치를 잘못 판단할 수 있습니다.</dd></div>
-                </dl>
-            </div>
-        </section>
 
-        <section id="retry-history" class="section" aria-labelledby="retry-title">
-            <header class="section-head"><div><p class="eyebrow">개발 당시 · UNITY PLAY MODE</p><h2 id="retry-title">재도전 결과창 오류 수정과 재검증</h2></div></header>
-            <p class="section-lead">Unity Play Mode에서 패배 후 테스트용 Bootstrap Retry를 직접 호출하면 이전 결과창이 남았습니다. 결과 데이터가 해제될 때 결과창도 닫히도록 수정하고, 검증 결과를 PR #83으로 팀에 공유했습니다.</p>
-            <div class="two-up">
-                <article class="panel history"><p class="eyebrow">H-01 · 재테스팅</p><h3>실제 패배 후 직접 재도전</h3><p>헬 난이도에서 패배한 뒤 Bootstrap의 직접 Retry를 실행했습니다. 팝업 수가 0이 됐고 배치 입력과 전투 시작이 복구됐습니다.</p></article>
-                <article class="panel history"><p class="eyebrow">H-02 · 리그레션 테스팅</p><h3>메뉴를 연 채 재도전</h3><p>결과창 위에 메뉴를 연 상태에서 재도전했습니다. 결과창만 닫히고 메뉴와 입력 차단은 유지됐습니다. 메뉴를 닫자 배치 입력이 복구됐습니다.</p></article>
-            </div>
-            <p class="small history-note">H-01·H-02는 개발 당시의 에디터 검증 이력입니다. 출시 빌드 4건 집계에서 제외했습니다.</p>
-            <div class="text-links"><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/pull/83">GitHub PR #83</a><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Docs/OutdoorBattlefield-Camps-81.md#재도전-후-결과-팝업-잔류-수정">Play Mode 검증 기록</a></div>
-        </section>
-
-        <section id="approach" class="section" aria-labelledby="approach-title">
-            <header class="section-head"><div><p class="eyebrow">QA WORKFLOW</p><h2 id="approach-title">테스트하고 기록하는 방식</h2></div></header>
-            <ol class="workflow">
-                <li><strong>요구사항과 의도 확인</strong><p>정상으로 판단할 동작과 기준을 먼저 적습니다.</p></li>
-                <li><strong>테스트 설계와 실행</strong><p>사전 조건·조작·기대 결과를 정하고 실행합니다.</p></li>
-                <li><strong>결함 발견과 재현</strong><p>실제 결과를 기대 결과와 대조해 기록합니다.</p></li>
-                <li><strong>발생 조건 분석</strong><p>재현 절차를 구체화하고, 조건을 바꿔 영향 범위를 좁힙니다.</p></li>
-                <li><strong>보고와 협업</strong><p>팀원이 같은 조건을 확인할 수 있도록 환경과 근거를 공유합니다.</p></li>
-                <li><strong>수정 후 검증</strong><p>같은 재현 조건과 주변 기능을 다시 확인합니다.</p></li>
-            </ol>
-            <div class="experience-note"><p><strong>수행 경험</strong> · 출시 빌드 TC 실행, 그리드 결함 보고, Play Mode 수정 검증과 PR 공유</p><p><strong>학습 범위</strong> · 동등 분할, 경계값 분석, 상태 전이</p><p><strong>확장하고 싶은 업무</strong> · 유저 로그를 바탕으로 재현 조건을 좁히고 이슈 추적 도구로 처리 경과를 관리하는 업무</p></div>
-        </section>
-
-        <section id="projects" class="section" aria-labelledby="projects-title">
-            <header class="section-head"><div><p class="eyebrow">UNITY · TEAM PROJECTS</p><h2 id="projects-title">게임 개발 프로젝트에서 쌓은 검증 경험</h2></div></header>
-            <div class="three-up">
-                <article class="panel project"><p class="eyebrow">STOVE 출시 · 4인 팀 · 6주</p><h3>용사때문에 레벨업</h3><div class="project-roles"><p><strong>개발 당시</strong> · 코어루프, 그리드 배치, 일반 보상과 결과·재도전 연동을 맡았습니다. 재도전 UI를 수정하고 Play Mode 검증 결과를 PR로 공유했으며 STOVE 출시에 참여했습니다.</p><p><strong>출시 이후 개인 QA 실습</strong> · 출시 빌드의 TC 4건을 실행하고 BUG-GRID-001 보고서와 증거를 정리했습니다.</p></div><a href="../index.html#castle-defense">담당 기능 보기</a></article>
-                <article class="panel project"><p class="eyebrow">3D 액션 · 2인 팀</p><h3>Felheim</h3><p>적 행동과 구역별 몬스터 생성을 맡았습니다. 공격 쿨타임의 참조 불일치와 Addressables 비동기 생성 중 상태가 바뀌는 조건을 분석했습니다.</p><a href="../index.html#felheim">담당 기능 보기</a></article>
-                <article class="panel project"><p class="eyebrow">방치형 시뮬레이션 · 5인 팀</p><h3>IDLE CITY</h3><p>건설 입력과 배치 피드백을 맡았습니다. 빠른 드래그에서 도로가 끊기는 조건을 확인하고, 공개 PR에서 입력 순서 회귀 테스트를 기록했습니다.</p><a href="../index.html#idle-case-drag">회귀 테스트 보기</a></article>
-            </div>
-        </section>
-
-        <section id="skills" class="section" aria-labelledby="skills-title">
-            <header class="section-head"><div><p class="eyebrow">SKILLS</p><h2 id="skills-title">보유기술과 활용 범위</h2></div></header>
-            <dl class="skill-list">
-                <div><dt>테스트 설계·결함 보고 <span>기초</span></dt><dd>CSTS 일반등급 학습 및 응시, 테스트 케이스 설계와 결함 보고 실습</dd></div>
-                <div><dt>GitHub 협업·이슈 공유 <span>팀 프로젝트 활용</span></dt><dd>PR에 변경 사항, 재현 조건과 검증 결과를 정리해 팀에 공유</dd></div>
-                <div><dt>C#·Unity <span>기초 활용</span></dt><dd>게임 기능 구현, 게임 진행 흐름과 관련 코드의 동작 확인</dd></div>
-            </dl>
-        </section>
-
-        <section id="resources" class="section resources" aria-labelledby="resources-title">
-            <header class="section-head"><div><p class="eyebrow">REFERENCES</p><h2 id="resources-title">포트폴리오와 검증 자료</h2></div></header>
-            <p>상세 테스트 케이스, 실행 결과와 결함 보고서는 지원서에 별도 첨부할 QA 포트폴리오 엑셀에 정리했습니다.</p>
-            <ul>
-                <li><a href="#test-results">출시 빌드 테스트 케이스 요약</a></li>
-                <li><a href="../index.html">Unity 개발 포트폴리오</a></li>
-                <li><a href="https://store.onstove.com/ko/games/106167">STOVE 출시 페이지</a></li>
-                <li><a href="https://github.com/OZ-GAME-LAB/OZGL2_1">게임 개발 GitHub 저장소</a></li>
-                <li><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/pull/83">재도전 결함 수정 PR #83</a></li>
-            </ul>
-        </section>
+            <section id="resources" class="section resources" aria-labelledby="resources-title">
+                <header class="section-head"><h2 id="resources-title">포트폴리오와 검증 자료</h2></header>
+                <p>상세 테스트 케이스, 실행 결과, 결함 보고서와 V11 대표 증거는 지원서에 별도 첨부하는 QA 엑셀에 정리했습니다.</p>
+                <ul>
+                    <li><a href="https://store.onstove.com/ko/games/106167">STOVE 출시 페이지</a></li>
+                    <li><a href="https://github.com/OZ-GAME-LAB/OZGL2_1">게임 개발 GitHub 저장소</a></li>
+                    <li><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/pull/83">재도전 결함 수정 PR #83</a></li>
+                    <li><a href="https://github.com/OZ-GAME-LAB/OZGL2_1/blob/b590109b6304a40cafeb664fd52e78e1376f9ba2/Docs/OutdoorBattlefield-Camps-81.md#재도전-후-결과-팝업-잔류-수정">Play Mode 검증 기록</a></li>
+                    <li><a href="../index.html">Unity 개발 포트폴리오</a></li>
+                </ul>
+            </section>
+        </div>
     </main>
     <footer class="site-footer"><div class="shell"><p>김건 · Game QA Portfolio</p><a href="#top">맨 위로</a></div></footer>
 </body>
