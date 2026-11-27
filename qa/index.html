@@ -7,6 +7,7 @@
     <title>김건 · 게임 QA 포트폴리오</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <script src="./navigation.js" defer></script>
 </head>
 <body>
     <a class="skip" href="#main">본문 바로가기</a>
@@ -27,7 +28,7 @@
             <div class="hero-copy">
                 <p class="eyebrow">GAME QA PORTFOLIO</p>
                 <h1 id="intro-title">게임의 의도와<br>실제 동작의 차이를<br class="hero-break"> <em>검증합니다.</em></h1>
-                <p class="lead">Unity·C# 팀 개발과 STOVE 출시 경험을 바탕으로 테스트를 설계합니다. 《용사때문에 레벨업》 출시 빌드에서 발견한 결함은 발생 조건과 재현 절차를 정리해 보고서로 남겼습니다.</p>
+                <p class="lead">Unity·C# 팀 개발과 STOVE 출시 경험을 바탕으로 게임을 검증합니다. 《용사때문에 레벨업》 출시 빌드에서 발견한 결함의 재현 절차와 관찰 결과를 기록했습니다.</p>
                 <ul class="credentials" aria-label="배경 및 학습 이력">
                     <li>Unity·C# 기초 활용</li><li>STOVE 출시 참여</li><li>CSTS 일반등급 학습·응시</li>
                 </ul>
@@ -42,15 +43,15 @@
             <aside class="run-card" aria-labelledby="run-title">
                 <p class="eyebrow">STOVE · WINDOWS</p>
                 <h2 id="run-title">출시 빌드 테스트</h2>
-                <p class="run-context">《용사때문에 레벨업》 · 보통 난이도<br><time datetime="2026-11-25">2026.11.25</time> 실행 기록</p>
+                <p class="run-context">《용사때문에 레벨업》 · 보통 난이도</p>
                 <dl class="metrics">
                     <div><dt>테스트 케이스</dt><dd>4<span>건</span></dd></div>
                     <div class="pass"><dt>통과</dt><dd>3<span>건</span></dd></div>
                     <div class="fail"><dt>실패</dt><dd>1<span>건</span></dd></div>
                     <div><dt>결함 보고서</dt><dd>1<span>건</span></dd></div>
                 </dl>
-                <p class="small">Windows 11 Home 25H2 · OS 빌드 26200.9974</p>
-                <p class="small">보통 난이도에서 실제로 실행한 4개 케이스의 결과입니다. <a href="#test-scope">검증 범위 보기</a></p>
+                <p class="small">통과 3건에는 화면에서 확인한 범위로 판정한 TC-SAVE-001이 포함됩니다. <a href="#test-scope">검증 범위 보기</a></p>
+                <p class="small run-environment">V1–V5 실행일 <time datetime="2026-11-25">2026.11.25</time><br>V1–V5 환경(수행자 기록) · Windows 11 Home 25H2 · OS 빌드 26200.9974</p>
             </aside>
         </section>
 
@@ -63,27 +64,48 @@
             <dl class="bug-meta">
                 <div><dt>심각도</dt><dd>하 · 수행자 평가</dd></div>
                 <div><dt>결함 수정 우선순위</dt><dd>중간 · 제안</dd></div>
-                <div><dt>발생 빈도</dt><dd>반복 관찰 · 재현율 미집계</dd></div>
+                <div><dt>발생 빈도</dt><dd>반복 관찰 · 빈도 등급·재현율 미산정</dd></div>
                 <div><dt>연결 테스트</dt><dd><a href="#tc-grid">TC-GRID-001 · 실패</a></dd></div>
             </dl>
             <div class="comparison">
                 <article><h3>기대 결과</h3><p>전사를 보관하면 빈 칸의 원이 즉시 사라집니다. 재배치하면 현재 유닛 위치에만 원이 표시됩니다.</p></article>
                 <article class="observed"><h3>실제 결과</h3><p>웨이브 2 준비 단계에서 빈 A에 원이 남았습니다. B로 옮겨 전투한 뒤 웨이브 3에서 보관하자 빈 B에 원이 남고 A에서는 사라졌습니다.</p></article>
             </div>
-            <div class="panel">
+            <div class="panel evidence-panel">
                 <h3>재현 절차와 V11 관찰 기록</h3>
-                <p>STOVE 출시 빌드의 보통 난이도에서 합성하지 않은 초기 1성 전사 1기와 빈 보관 공간을 사용했습니다. A는 웨이브 1 배치 칸이고, B는 A 바로 위 빈 칸입니다.</p>
+                <p><strong>사전 조건</strong> · STOVE 출시 빌드의 보통 난이도에서 초기 지급 1성 전사 1기(합성 없음)와 빈 보관 슬롯을 준비합니다. A는 웨이브 1 배치 칸입니다. A 바로 위 B는 비워 두고 전사를 배치할 수 있는 발판을 확보합니다.</p>
                 <ol class="evidence-steps" id="v11-evidence">
-                    <li><span class="timecode">V11 · 00:03</span><strong>A에 전사 배치</strong><p>B를 비워 둔 채 웨이브 1 전투를 완료합니다.</p></li>
-                    <li><span class="timecode">V11 · 00:24</span><strong>보관 후 빈 A에 원 잔류</strong><p>웨이브 2 준비에서 전사를 보관합니다. 전사는 사라지고 A의 원은 남았습니다.</p></li>
-                    <li><span class="timecode">V11 · 00:39</span><strong>B에 재배치해도 A의 원 유지</strong><p>같은 전사를 B에 배치합니다. 빈 A의 원이 남은 상태로 다음 전투에 진입했습니다.</p></li>
-                    <li><span class="timecode">V11 · 00:54</span><strong>다음 전투 후 빈 B에 원 잔류</strong><p>웨이브 3 준비에서 전사를 보관합니다. B에 원이 남고 A의 원은 사라져 있었습니다.</p></li>
+                    <li>
+                        <span class="timecode">1단계 · V11 00:03</span>
+                        <strong>A에 전사 배치</strong>
+                        <p>전사를 A에 놓고 B를 비워 둔 채 웨이브 1을 시작합니다.</p>
+                        <p class="evidence-range">00:06 전투 시작 · 00:15 클리어 · 00:21 다음 준비 단계</p>
+                    </li>
+                    <li>
+                        <span class="timecode">2단계 · V11 00:24</span>
+                        <strong>보관 후 빈 A에 원 잔류</strong>
+                        <p>웨이브 2 준비에서 A의 전사를 보관합니다. 전사는 사라졌고 빈 A에는 보라색 원이 남았습니다.</p>
+                        <p class="evidence-range">확인 구간 00:23–00:24</p>
+                    </li>
+                    <li>
+                        <span class="timecode">3단계 · V11 00:39</span>
+                        <strong>B에 재배치해도 A의 원 유지</strong>
+                        <p>같은 전사를 B에 놓고 웨이브 2를 시작합니다. 전투를 시작하기 전 빈 A의 원이 계속 보였습니다.</p>
+                        <p class="evidence-range">확인 구간 00:32–00:42 · 후반은 전투 진입</p>
+                    </li>
+                    <li>
+                        <span class="timecode">4단계 · V11 00:54</span>
+                        <strong>다음 전투 후 빈 B에 원 잔류</strong>
+                        <p>웨이브 3 준비에서 B의 전사를 보관합니다. 빈 B에 원이 남았고 빈 A의 원은 사라져 있었습니다.</p>
+                        <p class="evidence-range">확인 구간 00:50–00:54</p>
+                    </li>
                 </ol>
+                <p class="small evidence-note">A의 원이 사라진 정확한 시점과 내부 원인은 미확인입니다. 결함 수정 여부는 확인되지 않았고 수정 후 재테스팅 기록은 없습니다.</p>
                 <details>
                     <summary>발생 조건 비교와 보조 증거</summary>
                     <div class="details-body">
                         <p><strong>발생·유지 조건</strong> · 전투 뒤 유닛을 보관하면 직전 배치 칸에 원이 남았습니다. V11에서는 같은 전사를 B로 옮겨도 빈 A에 남은 원이 유지됐습니다.</p>
-                        <p><strong>해소 관찰</strong> · 다음 전투 후 B에서 전사를 보관한 시점에 A의 원이 사라져 있었습니다. 원이 정확히 언제 사라졌는지와 내부 원인은 미확인입니다.</p>
+                        <p><strong>해소 관찰</strong> · 다음 전투 후 B에서 전사를 보관한 시점에 A의 원이 사라져 있었습니다.</p>
                         <ul><li><strong>V6 · 최초 관찰</strong> 보관 뒤 빈 칸에 남은 원은 커서를 옮겨도 유지됐습니다.</li><li><strong>V7 · 반복 관찰</strong> 웨이브 2 준비 단계에서 다시 나타났습니다.</li><li><strong>V8 · 조건 비교</strong> 합성하지 않은 초기 전사에서도 관찰했습니다.</li><li><strong>V9 · 조건 비교</strong> 보상 유닛을 포함해 전투 직전 배치 구역과 다음 준비 단계의 빈 네 칸의 표시를 대조했습니다.</li></ul>
                     </div>
                 </details>
@@ -116,20 +138,24 @@
                     <div class="details-body"><p>같은 실행에서 패배 전후의 마왕 LV.2, 규모 확장, 얼음 가시 해금·장착 상태를 비교했습니다. 새 도전에서도 그리드 추가 1칸과 얼음 가시 시전을 확인했습니다.</p><p class="small">증거 V3·V4. 화면에서 비교한 성장 항목이 검증 범위입니다.</p></div>
                 </details>
                 <details id="tc-save" class="test-case">
-                    <summary><span><span class="case-id">TC-SAVE-001 · 우선순위 높음</span><strong>정상 종료 후 재실행에서 성장 상태 복원</strong></span><span class="badge pass">통과</span></summary>
+                    <summary><span><span class="case-id">TC-SAVE-001 · 우선순위 높음</span><strong>정상 종료 후 재실행에서 성장 상태 복원</strong></span><span class="badge pass">통과 <span class="badge-note">관찰 범위</span></span></summary>
                     <div class="details-body"><p>종료 전 V4와 재실행 후 V5에서 LV.2, 특성, 스킬 해금과 슬롯 구성을 비교했습니다. 새 도전에서 그리드 추가 1칸과 얼음 가시 시전까지 확인했습니다.</p><p class="small">정상 종료와 STOVE ‘실행’은 수행자 확인 U-01에 근거합니다. 정확한 누적 XP는 미확인입니다.</p></div>
                 </details>
-                <details id="tc-grid" class="test-case">
+                <details class="test-case">
                     <summary><span><span class="case-id">TC-GRID-001 · 테스트 우선순위 미지정</span><strong>유닛 보관 및 배치 표시 갱신</strong></span><span class="badge fail">실패</span></summary>
-                    <div class="details-body"><p>초기 1성 전사를 A와 B에 배치해 각각 전투한 뒤 보관 시점의 표시를 비교했습니다. 이전 전투에서 배치했던 빈 칸에 원이 남았습니다.</p><p><a href="#bug-grid">BUG-GRID-001 결함 보고</a> · <a href="#v11-evidence">V11 관찰 기록</a></p></div>
+                    <div class="details-body" id="tc-grid" tabindex="-1">
+                        <p><strong>사전 조건</strong> · 보통 난이도, 초기 지급 1성 전사 1기(합성 없음), 빈 보관 슬롯. A 바로 위의 빈 칸 B에 배치할 수 있도록 발판을 확보합니다.</p>
+                        <p>초기 전사를 A와 B에 배치해 각각 전투한 뒤 보관 시점의 표시를 비교했습니다. 이전 전투에서 배치했던 빈 칸에 원이 남았습니다.</p>
+                        <p><a href="#bug-grid">BUG-GRID-001 결함 보고</a> · <a href="#v11-evidence">V11 관찰 기록</a></p>
+                    </div>
                 </details>
             </div>
             <div class="test-context" id="test-scope" aria-labelledby="test-scope-title">
                 <h3 id="test-scope-title">검증 범위와 한계</h3>
-                <p>STOVE 최초 출시 빌드의 보통 난이도에서 확인한 범위입니다. Windows 11 Home 25H2에서 전체화면과 창 모드를 사용했습니다.</p>
+                <p>STOVE 최초 출시 빌드의 보통 난이도에서 확인했습니다. V1–V5의 실행일은 <time datetime="2026-11-25">2026.11.25</time>이며, Windows 11 Home 25H2(OS 빌드 26200.9974)와 전체화면·창 모드 사용은 수행자 기록입니다.</p>
                 <div class="two-up">
                     <article class="panel"><h4>확인한 범위</h4><ul><li>패배 후 로비 복귀와 새 도전 진입</li><li>화면에 표시된 성장 항목의 패배 후 유지와 재실행 후 복원·적용</li><li>유닛 보관과 재배치 전후의 그리드 표시</li></ul></article>
-                    <article class="panel"><h4>미검증·미확인</h4><ul><li>다른 난이도·플랫폼, 환경별 호환성, 성능과 밸런스</li><li>내부 저장 데이터와 정확한 누적 XP</li><li>영상별 화면 모드와 실제 해상도</li><li>배치 표시 결함의 내부 원인, 재현율과 수정 여부</li></ul></article>
+                    <article class="panel"><h4>미검증·미확인</h4><ul><li>다른 난이도·플랫폼, 환경별 호환성, 성능과 밸런스</li><li>내부 저장 데이터와 정확한 누적 XP</li><li>배치 표시 결함 영상(V6–V9·V11)의 실행일과 OS</li><li>영상별 화면 모드와 실제 해상도. ENV-01 원본 이미지는 미첨부.</li><li>배치 표시 결함의 내부 원인, 재현율과 수정 여부</li></ul></article>
                 </div>
             </div>
             <div class="test-context" aria-labelledby="risks-title">
@@ -146,7 +172,7 @@
 
         <section id="retry-history" class="section" aria-labelledby="retry-title">
             <header class="section-head"><div><p class="eyebrow">개발 당시 · UNITY PLAY MODE</p><h2 id="retry-title">재도전 결과창 오류 수정과 재검증</h2></div></header>
-            <p class="section-lead">패배 후 테스트용 경로에서 재도전하면 이전 결과창이 남았습니다. 결과창 닫기를 특정 버튼에서 결과 데이터가 해제되는 시점으로 옮기고, 검증 결과를 PR #83으로 팀에 공유했습니다.</p>
+            <p class="section-lead">Unity Play Mode에서 패배 후 테스트용 Bootstrap Retry를 직접 호출하면 이전 결과창이 남았습니다. 결과 데이터가 해제될 때 결과창도 닫히도록 수정하고, 검증 결과를 PR #83으로 팀에 공유했습니다.</p>
             <div class="two-up">
                 <article class="panel history"><p class="eyebrow">H-01 · 재테스팅</p><h3>실제 패배 후 직접 재도전</h3><p>헬 난이도에서 패배한 뒤 Bootstrap의 직접 Retry를 실행했습니다. 팝업 수가 0이 됐고 배치 입력과 전투 시작이 복구됐습니다.</p></article>
                 <article class="panel history"><p class="eyebrow">H-02 · 리그레션 테스팅</p><h3>메뉴를 연 채 재도전</h3><p>결과창 위에 메뉴를 연 상태에서 재도전했습니다. 결과창만 닫히고 메뉴와 입력 차단은 유지됐습니다. 메뉴를 닫자 배치 입력이 복구됐습니다.</p></article>
