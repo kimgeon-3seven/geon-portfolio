@@ -63,6 +63,9 @@ nav a:hover { text-decoration: underline; color: var(--hero-text); }
 .button.primary:hover { background: #ffe2a8; }
 .button.secondary { color: var(--hero-text); border-color: #728296; }
 .button.secondary:hover { background: #263c51; }
+.hero-workbook { margin-top: 1.15rem; }
+.hero-workbook .button { min-height: 3.15rem; min-width: min(15rem, 100%); padding-inline: 1.15rem; font-size: 1rem; }
+.hero-workbook .small { margin-top: .4rem; color: var(--hero-muted); }
 .hero-link { display: inline-block; color: var(--hero-muted); font-size: .875rem; margin-top: .72rem; }
 .hero-media { border: 1px solid #576376; border-radius: var(--radius); overflow: hidden; background: var(--night); box-shadow: 0 1rem 2.5rem #08142185; }
 .hero-media img { width: 100%; }
@@ -111,6 +114,7 @@ nav a:hover { text-decoration: underline; color: var(--hero-text); }
 .badge-note { display: block; font-size: .83rem; white-space: nowrap; }
 .detail-link { display: inline-flex; min-height: 2.45rem; padding: .4rem .68rem; align-items: center; border: 1px solid #abc2d8; border-radius: .4rem; background: #f0f6fc; color: #214d79; font-size: .9rem; font-weight: 750; text-decoration: none; }
 .detail-link:hover { background: #e2edf9; }
+.workbook-access { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .85rem; margin-top: 1rem; }
 
 .case-details, .test-list { display: grid; gap: .57rem; }
 .case-details { margin-top: 1rem; }
@@ -185,6 +189,7 @@ nav a:hover { text-decoration: underline; color: var(--hero-text); }
     nav { gap: .35rem .9rem; }
     .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 1.4rem; padding-block: 2.45rem 1.75rem; }
     .hero h1 { font-size: clamp(2.15rem, 8.7vw, 3.05rem); }
+    .hero-workbook .button { width: 100%; }
     .hero-media figcaption { padding: .52rem .7rem; }
     .overview { grid-template-columns: minmax(0, 1fr); }
     .metrics > div:first-child { border-left: 0; padding-left: 0; }
