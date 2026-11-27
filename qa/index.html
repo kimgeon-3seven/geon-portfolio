@@ -30,11 +30,15 @@
                     <p class="eyebrow">GAME QA PORTFOLIO</p>
                     <h1 id="intro-title">게임의 의도와<br>실제 동작의 차이를<br><em>검증합니다.</em></h1>
                     <p class="hero-lead">Unity·C# 팀 개발과 STOVE 출시 경험을 바탕으로 게임을 검증합니다. 출시 빌드의 결함 재현과 개발 중 수정·재검증을 기록했습니다.</p>
+                    <div class="hero-workbook">
+                        <a class="button primary" href="https://docs.google.com/spreadsheets/d/14lKbiZvA3CjX_xMVMN-wThZhL4Iw7ff_/edit?usp=drive_link&amp;ouid=108441143072113983678&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" aria-describedby="workbook-hero-description">QA 포트폴리오 엑셀 열람</a>
+                        <p class="small" id="workbook-hero-description">상세 테스트 케이스 · 실행 결과 · 결함 보고서 · 대표 증거</p>
+                    </div>
                     <ul class="credentials" aria-label="기술과 학습 이력">
                         <li>Unity·C# 기초 활용</li><li>STOVE 출시 참여</li><li>CSTS 기반 테스트 이론 학습</li>
                     </ul>
                     <div class="actions">
-                        <a class="button primary" href="#featured-cases">대표 QA 사례 보기</a>
+                        <a class="button secondary" href="#featured-cases">대표 QA 사례 보기</a>
                         <a class="button secondary" href="#test-results">테스트 결과 보기</a>
                     </div>
                     <a class="hero-link" href="../index.html">개발 포트폴리오 보기</a>
@@ -79,7 +83,7 @@
                             <p class="eyebrow">개인 QA 실습 · BUG-GRID-001</p>
                             <h3 id="bug-title">유닛을 보관해도<br class="desktop-break"> 이전 배치 칸에 원이 남습니다</h3>
                             <p>직전 배치 칸에 남은 보라색 원을 발견하고, 같은 전사를 A와 B에 배치해 발생 조건을 비교했습니다. 빈 칸이 점유된 것처럼 보였지만 재배치와 전투 진행은 가능했습니다.</p>
-                            <p class="small case-source">V11 대표 증거는 별도 제출 QA 엑셀에서 확인할 수 있습니다.</p>
+                            <p class="small case-source">V11 대표 증거는 QA 포트폴리오 엑셀의 ‘결함 기록’ 시트에서 확인할 수 있습니다.</p>
                             <div class="card-footer">
                                 <span class="badge fail">재현 확인 · 수정 여부 미확인</span>
                                 <a class="detail-link" href="#bug-grid">결함 보고서 보기</a>
@@ -108,6 +112,11 @@
                     </article>
                 </div>
 
+                <div class="workbook-access">
+                    <a class="detail-link" href="https://docs.google.com/spreadsheets/d/14lKbiZvA3CjX_xMVMN-wThZhL4Iw7ff_/edit?usp=drive_link&amp;ouid=108441143072113983678&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" aria-describedby="workbook-case-description">QA 포트폴리오 엑셀 열람</a>
+                    <p class="small" id="workbook-case-description">상세 테스트 케이스 · 실행 결과 · 결함 보고서 · 대표 증거</p>
+                </div>
+
                 <div class="case-details">
                     <details class="disclosure">
                         <summary>BUG-GRID-001 상세 · 사전 조건과 V11 재현 절차</summary>
@@ -130,7 +139,7 @@
                                 <li><span class="timecode">V11 · 00:39</span><strong>B에 재배치해도 A의 원 유지</strong><p>같은 전사를 B에 배치해도 전투 시작 전 빈 A의 원이 남았습니다. 확인 구간 00:32–00:42, 후반은 전투 진입입니다.</p></li>
                                 <li><span class="timecode">V11 · 00:54</span><strong>다음 전투 후 빈 B에 원 잔류</strong><p>웨이브 3 준비에서 전사를 보관하자 B에 원이 남고 A의 원은 사라져 있었습니다. 확인 구간 00:50–00:54.</p></li>
                             </ol>
-                            <p class="record-note">V11 대표 이미지 4장은 지원서에 별도 첨부하는 QA 엑셀의 ‘결함 기록’에서 확인할 수 있습니다.</p>
+                            <p class="record-note">V11 대표 증거 이미지 4장은 QA 포트폴리오 엑셀의 ‘결함 기록’ 시트에서 확인할 수 있습니다.</p>
                             <p class="small">A의 표시 해제 시점, 내부 원인, 수정 여부는 미확인입니다. 수정 후 재테스팅 기록은 없습니다.</p>
                             <details class="disclosure nested">
                                 <summary>V6–V9 보조 관찰 기록</summary>
@@ -296,7 +305,10 @@
 
             <section id="resources" class="section resources" aria-labelledby="resources-title">
                 <header class="section-head"><h2 id="resources-title">포트폴리오와 검증 자료</h2></header>
-                <p>상세 테스트 케이스, 실행 결과, 결함 보고서와 V11 대표 증거는 지원서에 별도 첨부하는 QA 엑셀에 정리했습니다.</p>
+                <div class="workbook-access">
+                    <a class="detail-link" href="https://docs.google.com/spreadsheets/d/14lKbiZvA3CjX_xMVMN-wThZhL4Iw7ff_/edit?usp=drive_link&amp;ouid=108441143072113983678&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener" aria-describedby="workbook-resources-description">QA 포트폴리오 엑셀 열람</a>
+                    <p class="small" id="workbook-resources-description">상세 테스트 케이스 · 실행 결과 · 결함 보고서 · 대표 증거</p>
+                </div>
                 <ul>
                     <li><a href="https://store.onstove.com/ko/games/106167">STOVE 출시 페이지</a></li>
                     <li><a href="https://github.com/OZ-GAME-LAB/OZGL2_1">게임 개발 GitHub 저장소</a></li>
